@@ -4,7 +4,7 @@ const {
 
 // 注册用户
 let insertData = function(value) {
-	let _sql = "insert into user_info(name,password) values(?,?);"
+	let _sql = "insert into user_info(name,password, sex) values(?,?, ?);"
 	return query(_sql, value)
 }
 

@@ -9,7 +9,9 @@ const router = require('koa-router')(),
 	privateChat = require('../controllers/privateChat.js'),
 	userInfo = require('../controllers/userInfo.js'),
 	newFriends = require('../controllers/newFriends.js'),
-	groupInfo = require('../controllers/groupInfo.js');
+  groupInfo = require('../controllers/groupInfo.js'),
+  contactList = require("../controllers/contactList");
+
 router.prefix(`/${baseApi}`)
 router.all("*", async (ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', "*")
@@ -17,6 +19,7 @@ router.all("*", async (ctx, next) => {
   ctx.set('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE');
   await next();
 })
+
 router.post('/register', register) //注册
 	.post('/login', login) //登录
 	.get('/robot', verify, robot) //机器人交流
@@ -42,7 +45,7 @@ router.post('/register', register) //注册
 	.get('/get_newfriends', verify, newFriends.getnewFriends) // 获取新朋友通知
 	.post('/insert_newfriends', verify, newFriends.insertNewFriends) // 添加我的新好友通知
 	.put('/update_newfriends', verify, newFriends.updateNewFriends) // 更新 新好友状态  是否已被同意加好友
-
+  .get('/get_contact_list', verify, contactList.getContactList)
 
 
 
