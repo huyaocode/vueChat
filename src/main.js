@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import store from './store'
-
+import './assets/iconfont/iconfont.js'
 
 import Components from './components/index'
 Vue.use(Components);

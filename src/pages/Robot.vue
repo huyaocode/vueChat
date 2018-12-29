@@ -3,15 +3,22 @@
 <div class="wrapper">
 	<Header :currentTab="currentTab"></Header>
 	<ul>
+		<li>
+			这里是表白动态
+		</li>
+		<li>
+			这里是表白动态
+		</li>
+		<li>
+			这里是表白动态
+		</li>
+	</ul>
+	<!-- <ul>
 		<li v-for="msg in robotMsgGetter">
 			<ChatItem v-if="msg.user" img="http://ooytyiziz.bkt.clouddn.com/robot.gif" :msg="msg.message" :name="msg.user" :time="time"></ChatItem>
 			<ChatItem v-if="!msg.user" me="true" :img=img :msg="msg.message" :time="time"></ChatItem>
 		</li>
-	</ul>
-	<div class="input-msg">
-		<textarea v-model="inputMsg" @keydown.enter.prevent="sendMessage" ref="message"></textarea>
-		<p class="btn" :class="{'enable':inputMsg!=''}" @click="sendMessage">发送</p>
-	</div>
+	</ul> -->
 
 	<Footer :currentTab="currentTab"></Footer>
 
@@ -99,48 +106,11 @@ export default {
         padding-bottom: 1.6rem;
         // touch-action:none !important;
         li {
-            margin-top: -1rem;
+            margin-top: 0.1rem;
             padding: 0;
+						font-size: 0.28rem;
         }
     }
-    .input-msg {
-        height: 0.46rem;
-        position: fixed;
-        bottom: 0.62rem;
-        display: flex;
-        width: 100%;
-        z-index: 999;
-        textarea {
-            width: 87.8%;
-            margin: 0 0.06rem;
-            padding-top: 0.07rem;
-            padding-left: 0.06rem;
-            border-radius: 0.02rem;
-            outline: none;
-            resize: none;
-            border: none;
-            overflow-y: hidden;
-            font: 0.16rem/0.18rem 'Microsoft Yahei';
-        }
-        p.btn {
-            font-size: 0.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin-right: 0.06rem;
-            height: 100%;
-            width: 11%;
-            background: #ccc;
-            color: white;
-            border-radius: 0.02rem;
-            cursor: not-allowed;
-            font-family: 'Microsoft Yahei';
-            &.enable {
-                background: #1E90FF;
-                cursor: pointer;
-            }
-        }
-    }
+    
 }
 </style>
