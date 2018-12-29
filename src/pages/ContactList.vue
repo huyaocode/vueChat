@@ -5,9 +5,12 @@
 		<svg class="icon img" aria-hidden="true"> <use  xlink:href="#icon-pengyouquan"></use></svg><span>新朋友</span>
 		<svg class="icon enter" aria-hidden="true"> <use  xlink:href="#icon-right"></use></svg>
 	</router-link>
-	<p class="tab"><span :class="friend" @click="showFriends">朋友</span><span :class="group" @click="showGroups">群组</span></p>
 	<ul>
-
+        <li>adsf</li>
+        <li>adsf</li>
+        <li>adsf</li>
+        <li>adsf</li>
+        <li>adsf</li>
 	</ul>
 	<Footer :currentTab="currentTab"></Footer>
 </div>
