@@ -45,7 +45,8 @@ router.post('/register', register) //注册
 	.get('/get_newfriends', verify, newFriends.getnewFriends) // 获取新朋友通知
 	.post('/insert_newfriends', verify, newFriends.insertNewFriends) // 添加我的新好友通知
 	.put('/update_newfriends', verify, newFriends.updateNewFriends) // 更新 新好友状态  是否已被同意加好友
-  .get('/get_contact_list', verify, contactList.getContactList)
+  .get('/get_contact_list', verify, contactList.getContactList) // 获取联系人列表
+  .get('/change_passwd', verify, userInfo.changePasswd) // 修改密码
 
 
 
