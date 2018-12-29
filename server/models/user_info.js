@@ -4,7 +4,7 @@ const {
 
 // 注册用户
 let insertData = function(value) {
-	let _sql = "insert into user_info(name,password) values(?,?);"
+	let _sql = "insert into user_info(name,password, sex) values(?,?, ?);"
 	return query(_sql, value)
 }
 
@@ -81,6 +81,15 @@ let editorRemark = (remark, user_id, other_user_id) => {
 	return query(_sql, [remark, user_id, other_user_id]);
 }
 
+/**
+ * 修改密码
+ * @param {*} user_id
+ * @param {*} new_pwd
+ */
+let change_passwd = (user_id, new_pwd) => {
+  const _sql = 'update user_info set password = ? where id = ?'
+  return query(_sql, [new_pwd, user_id])
+}
 
 module.exports = {
 	insertData,
@@ -92,5 +101,7 @@ module.exports = {
 	delFriend,
 	shieldFriend,
 	editorRemark,
-	editorInfo
+  editorInfo,
+  change_passwd,
+  findDataByUserid
 }

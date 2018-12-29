@@ -1,4 +1,5 @@
 const userModel = require("../models/user_info");
+const md5 = require("md5");
 
 /**
  *  通过user_id获取用户信息 （不包括密码）
@@ -202,6 +203,42 @@ let editorInfo = async (ctx, next) => {
 		});
 };
 
+/**
+ * 修改密码
+ * @param user_id 用户id
+ *        old_pwd 旧密码
+ *        new_pwd 新密码
+ * @param {*} next
+ */
+let changePasswd = async (ctx, next) => {
+  let body = ctx.request.body
+  let {user_id, old_pwd, new_pwd} = body;
+  let RowDataPacket = await userModel.findDataByUserid(user_id)
+  let res = JSON.parse(JSON.stringify(RowDataPacket))
+  if(res.length > 0) {
+    let data = res[0]
+    if(data["password"] === md5(old_pwd)) {
+      new_pwd = md5(new_pwd)
+      await userModel.change_passwd(user_id, new_pwd)
+      ctx.body = {
+        success: true,
+        message: '修改密码成功'
+      }
+    } else {
+      ctx.body = {
+				success: false,
+				message: "密码错误"
+			};
+    }
+  } else {
+    ctx.body = {
+      success: false,
+      message: "用户id有误"
+    };
+  }
+
+}
+
 module.exports = {
 	getUserInfo,
 	findUIByName,
@@ -210,5 +247,6 @@ module.exports = {
 	delFriend,
 	shieldFriend,
 	editorRemark,
-	editorInfo
+  editorInfo,
+  changePasswd
 };
