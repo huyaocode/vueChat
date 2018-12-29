@@ -28,9 +28,9 @@ export default {
 			if (this.currentTab === 1) {
 				return '消息'
 			} else if (this.currentTab === 2) {
-				return '机器人'
+				return '表白'
 			} else if (this.currentTab === 3) {
-				return '通讯录'
+				return '同学'
 			} else if (this.currentTab === 4) {
 				return '我'
 			} else {
@@ -64,7 +64,7 @@ export default {
     flex-direction: row;
     justify-content: center;
     line-height: 0.76rem;
-    background: #1E90FF;
+    background: #fb7299;
     color: white;
     font-size: 0.32rem;
     letter-spacing: 0.04rem;
