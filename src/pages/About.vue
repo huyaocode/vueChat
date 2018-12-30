@@ -35,7 +35,7 @@ export default {
   padding-top: 1rem;
   .content {
     padding: 0.2rem;
-     font-size: 0.3rem;
+    font-size: 0.3rem;
     line-height: 0.5rem;
   }
 }

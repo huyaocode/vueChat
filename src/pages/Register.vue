@@ -23,7 +23,7 @@
             v-model="name"
             placeholder="教务处账号"
           />
-					<input
+          <input
             type="text"
             class="fadeIn third"
             v-model="username"
@@ -74,8 +74,8 @@ import axios from 'axios'
 export default {
   data () {
     return {
-			name: '',
-			username: '',
+      name: '',
+      username: '',
       password: '',
       repeatPsw: '',
       sex: 1,
