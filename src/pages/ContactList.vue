@@ -21,8 +21,13 @@
     <ul class="userlist">
       <li
         v-for="item in userList"
-        :key="item.name"
-      >{{item.name}}</li>
+        :key="item.id"
+      >
+      <div>
+        <div class="name">{{item.name}}</div>
+        <!-- <div class="time">{{item.time}}</div> -->
+      </div>
+      </li>
     </ul>
     <Footer :currentTab="currentTab"></Footer>
   </div>
@@ -66,7 +71,6 @@ export default {
       this.friend = '';
       this.group = "hover";
     },
-
   },
 
   mounted () {

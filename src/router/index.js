@@ -15,6 +15,8 @@ import Add from "@/pages/Add";
 import AddSeach from "@/pages/AddSeach";
 import GroupInfo from "@/pages/GroupInfo";
 import CreatEditorGroup from "@/pages/CreatEditorGroup";
+import Auth from "@/pages/Auth";
+import About from "@/pages/About";
 
 import axios from "axios";
 
@@ -88,6 +90,14 @@ const router = new Router({
 		{ //编辑群
 			path: "/editor_group",
 			component: CreatEditorGroup
+		},
+		{
+			path: "/auth",
+			component: Auth
+		},
+		{
+			path: "/about",
+			component: About
 		},
 		{
 			path: "/",

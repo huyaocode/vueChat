@@ -1,115 +1,137 @@
 <template>
-<!--  MessageBox弹窗组件 -->
-<div class="message-box" v-if="visible">
-	<div class="bg"></div>
-	<div class="message-box-wrapper">
-		<h1> {{title}}</h1>
-		<input v-if="canInput" type="text" v-model="canInputText" maxlength="10" placeholder="最多10个字哦">
-		<form class="editor-info" v-if="canEditorInfo">
-			<div class="">
-				<span>github:</span><input type="text" v-model="myInfo.github">
-			</div>
-			<div class="">
-				<span>website:</span><input type="text" v-model="myInfo.website">
-			</div>
-			<div class="info-sex">
-				<span>性别:</span>
-				<select v-model="myInfo.sex">
-			   <option disabled value="">性别</option>
-			   <option>男</option>
-			   <option>女</option>
-			 </select>
-			</div>
-			<div class="">
-				<span>来自:</span><input type="text" v-model="myInfo.place" maxlength="12">
-			</div>
-		</form>
-		<p v-else class="content">
-			<slot name="content"></slot>
-		</p>
-		<div v-if="hasCancel" class="hasCancel">
-			<p @click="cancel">取消</p>
-			<p @click="confirm">确定</p>
-		</div>
-		<div v-else class="noCancel">
-			<p @click="confirm">确定</p>
-		</div>
-	</div>
+  <!--  MessageBox弹窗组件 -->
+  <div
+    class="message-box"
+    v-if="visible"
+  >
+    <div class="bg"></div>
+    <div class="message-box-wrapper">
+      <h1> {{title}}</h1>
+      <input
+        v-if="canInput"
+        type="text"
+        v-model="canInputText"
+        maxlength="10"
+        placeholder="最多10个字哦"
+      >
+      <form
+        class="editor-info"
+        v-if="canEditorInfo"
+      >
+        <div class="">
+          <span>昵称： </span><input
+            type="text"
+            v-model="myInfo.github"
+          >
+        </div>
+        <div class="">
+          <span>年龄： </span><input
+            type="text"
+            v-model="myInfo.website"
+          >
+        </div>
+        <div class="">
+          <span>签名： </span><input
+            type="text"
+            v-model="myInfo.place"
+            maxlength="22"
+          >
+        </div>
+      </form>
+      <p
+        v-else
+        class="content"
+      >
+        <slot name="content"></slot>
+      </p>
+      <div
+        v-if="hasCancel"
+        class="hasCancel"
+      >
+        <p @click="cancel">取消</p>
+        <p @click="confirm">确定</p>
+      </div>
+      <div
+        v-else
+        class="noCancel"
+      >
+        <p @click="confirm">确定</p>
+      </div>
+    </div>
 
-
-</div>
+  </div>
 </template>
 
 <script>
 import {
-	mapGetters
+  mapGetters
 } from 'vuex'
 export default {
-	name: 'MessageBox',
-	props: {
-		messageBoxEvent: {
-			type: String
-		},
-		visible: {
-			type: Boolean,
-			default: false
-		},
-		title: {
-			type: String,
-			default: "提示"
-		},
-		//单行输入
-		canInput: {
-			type: Boolean,
-			default: false
-		},
-		//编辑个人信息
-		canEditorInfo: {
-			type: Boolean,
-			default: false
-		},
-		hasCancel: {
-			type: Boolean,
-			default: true
-		},
-		myInfo: {
-			type: Object
-		}
-	},
-	components: {},
-	data() {
-		return {
-			canInputText: ""
-		};
-	},
+  name: 'MessageBox',
+  props: {
+    messageBoxEvent: {
+      type: String
+    },
+    visible: {
+      type: Boolean,
+      default: false
+    },
+    title: {
+      type: String,
+      default: "提示"
+    },
+    //单行输入
+    canInput: {
+      type: Boolean,
+      default: false
+    },
+    //编辑个人信息
+    canEditorInfo: {
+      type: Boolean,
+      default: false
+    },
+    hasCancel: {
+      type: Boolean,
+      default: true
+    },
+    myInfo: {
+      type: Object
+    }
+  },
+  components: {},
+  data () {
+    return {
+      canInputText: ""
+    };
+  },
 
-	computed: {},
+  computed: {},
 
-	watch: {},
+  watch: {},
 
-	methods: {
-		cancel() {
-			this.$emit("cancel", this.messageBoxEvent);
-		},
-		confirm() {
-			if (this.canInput) {
-				this.$emit("confirm", {
-					messageBoxEvent: this.messageBoxEvent,
-					canInputText: this.canInputText
-				});
-				return
-			} else if (this.canEditorInfo) {
-                console.log('myInfo',this.myInfo); 
-                this.myInfo.sex = this.myInfo.sex === '男' ? 0 : 1;
-				this.$emit("confirm", {
-					messageBoxEvent: this.messageBoxEvent,
-					myInfo: this.myInfo
-				});
-				return
-			}
-			this.$emit("confirm", this.messageBoxEvent);
-		}
-	}
+  methods: {
+    cancel () {
+      this.$emit("cancel", this.messageBoxEvent);
+    },
+    confirm () {
+      if (this.canInput) {
+        this.$emit("confirm", {
+          messageBoxEvent: this.messageBoxEvent,
+          canInputText: this.canInputText
+        });
+        return
+      } else if (this.canEditorInfo) {
+        console.log('myInfo', this.myInfo);
+        this.myInfo.sex = this.myInfo.sex === '男' ? 0 : 1;
+        this.$emit("confirm", {
+          messageBoxEvent: this.messageBoxEvent,
+          myInfo: this.myInfo
+        });
+        return
+      }
+      this.$emit("confirm", this.messageBoxEvent);
+    }
+  }
 }
 </script>
 
@@ -124,7 +146,9 @@ export default {
     opacity: 0.3;
     z-index: 100;
 }
-
+select{
+    font-size: 0.25rem;
+}
 .message-box-wrapper {
     position: fixed;
     top: 50%;
@@ -179,8 +203,8 @@ export default {
         /*去除点击出现轮廓颜色*/
         width: 60%;
         outline: none;
-        border:: 0.01rem solid #fff;
-        border-bottom:: 0.01rem solid #999;
+        border: 0.01rem solid #fff;
+        border-bottom: 0.01rem solid #999;
         padding: 0.06rem 0 0.1rem 0.1rem;
         font-size: 0.28rem;
         -webkit-appearance: none;
@@ -250,7 +274,7 @@ export default {
         display: -ms-flexbox;
         flex-direction: column;
         justify-content: center;
-        font-size: 0.2rem;
+        font-size: 0.25rem;
         div {
             width: 100%;
             margin: 0.3rem auto;
@@ -258,7 +282,7 @@ export default {
                 width: 60%;
             }
             input {
-                font-size: 0.1rem;
+                font-size: 0.25rem;
             }
         }
     }
