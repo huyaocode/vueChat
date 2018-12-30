@@ -236,7 +236,6 @@ let changePasswd = async (ctx, next) => {
       message: "用户id有误"
     };
   }
-
 }
 
 module.exports = {
