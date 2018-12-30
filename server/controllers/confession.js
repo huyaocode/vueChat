@@ -26,7 +26,7 @@ let confession_to_other = async function(ctx) {
  * 获取收到的表白
  * @param {*} ctx
  */
-let get_received_confession = function(ctx) {
+let get_received_confession = async function(ctx) {
   let {user_id} = ctx.query
   let RowDataPacket = await confessionModel.get_received_confession(user_id)
   let res = JSON.parse(JSON.stringify(RowDataPacket))
@@ -36,8 +36,11 @@ let get_received_confession = function(ctx) {
   }
 }
 
-
-let get_all_confession = function(ctx) {
+/**
+ * 获取所有的告白
+ * @param {*} ctx
+ */
+let get_all_confession = async function(ctx) {
   let RowDataPacket = await confessionModel.get_all_confession()
   let res = JSON.parse(JSON.stringify(RowDataPacket))
   ctx.body = {
