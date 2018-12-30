@@ -234,3 +234,17 @@ UNLOCK TABLES;
 # /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 # /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 # /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+--  ------------------ 表白表  ------------------------------------------------------
+create table user_confession
+(
+	user_id int not null,
+	to_user_id int not null,
+	sueccess int default 0 null,
+	message text null,
+	constraint confession_pk
+		primary key (user_id)
+)
+comment '用户告白';
