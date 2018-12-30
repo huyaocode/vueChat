@@ -13,6 +13,7 @@ let getContactList = function(user_id) {
  * 获取异性陌生人信息
  */
 let getStrangerList = function(sex) {
+  sex = Number(sex)
   let _sql = 'select * uid from user_info where sex != ? limit 10'
   return query(_sql, sex)
 }
