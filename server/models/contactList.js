@@ -14,7 +14,7 @@ let getContactList = function(user_id) {
  */
 let getStrangerList = function(sex) {
   sex = Number(sex)
-  let _sql = 'select * uid from user_info where sex != ? limit 10'
+  let _sql = 'select * from user_info where sex != ? limit 10'
   return query(_sql, sex)
 }
 
