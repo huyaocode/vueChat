@@ -22,11 +22,11 @@
       <li
         v-for="item in userList"
         :key="item.id"
+         @click="enterChat(item.id)"
       >
-      <div>
-        <div class="name">{{item.name}}</div>
-        <!-- <div class="time">{{item.time}}</div> -->
-      </div>
+        <div class="head-pic">
+        </div>
+        <div class="username">{{item.name}}</div>
       </li>
     </ul>
     <Footer :currentTab="currentTab"></Footer>
@@ -70,6 +70,9 @@ export default {
     showGroups () {
       this.friend = '';
       this.group = "hover";
+    },
+    enterChat (chatId) {
+      this.$router.push(`/private_chat/${chatId}`)
     },
   },
 
@@ -122,11 +125,25 @@ export default {
     }
   }
   .userlist {
-    font-size: 0.4rem;
+    width: 100%;
     li {
+      display: flex;
+      border-top: 1px solid #eee;
+      border-top: 1px solid #eee;
+      background: #fff;
       height: 1rem;
-      border-bottom: 1px solid #ddd;
-      padding: 0.01rem 0 0 0.2rem;
+      padding: 0.05rem 0.15rem 0.05rem;
+      .head-pic {
+        align-self: center;
+        width: 0.8rem;
+        height: 0.8rem;
+        background-color: #f0ecec;
+      }
+      .username {
+        margin-left: 0.2rem;
+        font-size: 0.3rem;
+        align-self: center;
+      }
     }
   }
 }
