@@ -2,8 +2,8 @@
 <div class="wrapper">
 	<Header goback='true' :chatTitle="chatTitle"></Header>
 	<ul>
-		<li v-if="userDataList !== []" v-for="data in userDataList">
-			<div @click="enterUserCard(data.id)">
+		<li v-if="userDataList !== []" v-for="data in userDataList" :key="data.id">
+			<div @click="enterUserCard(data.id)" >
 				<img :src="data.avator" alt="">
 				<div class="content">
 					<p>{{data.name}}
@@ -17,8 +17,8 @@
 				</div>
 			</div>
 		</li>
-		<li v-if="groupDataList !== []" v-for="data in groupDataList">
-			<div @click="enterGroupCard(data.group_id)">
+		<li v-if="groupDataList !== []" v-for="data in groupDataList" :key="data.group_id">
+			<div @click="enterGroupCard(data.group_id)" >
 				<img :src="data.group_avator" alt="">
 				<div class="content">
 					<p class="group-creater">{{data.group_name}} <svg class="icon" aria-hidden="true"> <use  xlink:href="#icon-group_fill"></use></svg>

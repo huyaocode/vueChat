@@ -3,7 +3,7 @@
 <div class="wrapper">
 	<Header :currentTab="currentTab"></Header>
 	<ul>
-		<li v-for="data in msgListGetter" @click="enterChat(data.type,data.id)">
+		<li v-for="(data, index) in msgListGetter" @click="enterChat(data.type,data.id)" :key="index">
 			<a v-if="data.type === 'group'" href=""><img :src="data.group_avator" alt="" class="img"><span class="group-unread" v-if="data.unread">{{data.unread}}</span></a>
 			<a v-if="data.type === 'private'" href=""><img :src="data.avator" alt="" class="img"><span class="private-unread" v-if="data.unread">{{data.unread}}</span></a>
 			<div class="content">

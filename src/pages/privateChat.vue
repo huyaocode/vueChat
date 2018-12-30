@@ -3,7 +3,7 @@
 <div class="wrapper">
 	<Header goback='true' userInfo='true' :chatTitle="someOneInfoGetter.name"></Header>
 	<ul>
-		<li v-for="item in privateDetail">
+		<li v-for="(item, index) in privateDetail" :key="index">
 			<ChatItem v-if="fromUserInfo.user_id === item.from_user" :href="item.from_user" :img="item.avator" me="true" :msg="item.message" :name="item.name" :time="item.time"></ChatItem>
 			<ChatItem v-else :img="item.avator" :msg="item.message" :href=" item.from_user " :name="item.name" :time="item.time"></ChatItem>
 		</li>

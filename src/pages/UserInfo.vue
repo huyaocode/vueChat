@@ -11,6 +11,7 @@
 		<p slot="content">{{this.messageBox.message}}</p>
 	</Message-box>
 	<Header goback='true' chatTitle="用户资料"></Header>
+
 	<div class="content">
 		<img :src="userInfo.avator" alt="">
 		<p class="href">
@@ -27,12 +28,16 @@
 			<svg class="icon" aria-hidden="true"><use  xlink:href="#icon-xingbie"></use></svg><span>性别</span>：{{userInfo.sex === 0 ? '男' : '女' }}
 		</p>
 		<p>
-			<svg class="icon" aria-hidden="true"><use  xlink:href="#icon-placeholder"></use></svg><span>来自</span>：{{userInfo.place}}
+			<svg class="icon" aria-hidden="true"><use  xlink:href="#icon-placeholder"></use></svg><span>签名</span>：{{userInfo.place}}
 		</p>
 	</div>
+
+
 	<div v-if="this.isAddingMe" class="action">
 		<span class="add-as-friend" @click="agreeBeFriend">通过验证</span>
 	</div>
+
+
 	<div v-if="this.isMyFriend === true && this.isHisFriend === true " class="action">
 		<span class="editor-remark" @click="editorRemark">修改备注</span>
 		<span class="go-chat" @click="goChat">发消息</span>
@@ -339,7 +344,7 @@ export default {
         p {
             font-size: 0.28rem;
             line-height: 0.8rem;
-            color: #4290F7;
+            color: #333;
             .icon {
                 font-size: 1.6em;
             }

@@ -2,7 +2,7 @@
 <div class="wrapper">
 	<Header goback='true' chatTitle="新好友通知"></Header>
 	<ul>
-		<li v-for="data in newFriendGetter">
+		<li v-for="(data,index) in newFriendGetter" :key="index">
 			<div @click="enterIt(data.from_user)">
 				<img :src="data.avator" alt="">
 				<div class="content">

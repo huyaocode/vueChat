@@ -15,8 +15,6 @@
                             <use  xlink:href="#icon-error1"></use>
                         </svg> {{message}}
 	</div>
-
-
 </div>
 </template>
 

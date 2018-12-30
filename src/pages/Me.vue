@@ -11,13 +11,11 @@
 			<span>{{userInfo.name}}</span>
 			<svg class="icon" aria-hidden="true"> <use  xlink:href="#icon-right"></use></svg>
 		</li>
-		<!-- <img :src="userInfo.avator" alt="">
-                    <p>用户名：{{userInfo.name}}</p>
-                    <p>性别：{{userInfo.sex}}</p>
-                    <p>来自：{{userInfo.place}}</p> -->
 	</ul>
-	<div class="action" @click="logout">
-		<span class="logout">退出登录</span>
+	<div class="action">
+        <div class="logout" @click="auth">申请认证</div>
+        <div class="logout" @click="about">关于我们</div>
+		<div class="logout" @click="logout">退出登录</div>
 	</div>
 	<Footer :currentTab="currentTab"></Footer>
 </div>
@@ -27,7 +25,7 @@
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 export default {
-	name: 'message',
+	name: 'me',
 	data() {
 		return {
 			currentTab: 4,
@@ -70,7 +68,14 @@ export default {
 					});
 				}, 1000);
 			}
-		}
+        },
+        auth() {
+            const path = `auth`;
+			this.$router.push(path)
+        },
+        about() {
+            this.$router.push('about')
+        }
 	},
 	mounted() {
 		this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -127,8 +132,9 @@ export default {
         width: 100%;
         top: 7.6rem;
         text-align: center;
-        span {
-            display: inline-block;
+        div {
+            /* display: inline-block; */
+            margin: 0.3rem auto;
             font-size: 0.26rem;
             line-height: 0.26rem;
             padding: 0.16rem 0;
@@ -136,7 +142,7 @@ export default {
             cursor: pointer;
         }
         .logout {
-            background-color: #4290F7;
+            background-color: #fb7299;
             color: #fff;
         }
     }

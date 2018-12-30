@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" style="width: 100%; height: 100%;">
 	<!-- <img src="./assets/logo.png"> -->
 	<router-view></router-view>
 </div>
@@ -87,7 +87,7 @@ export default {
 			var ratio = sreenRatio();
 			console.log(ratio)
 			var scale = document.createElement('meta');
-			var scaleRatio = 1 / ratio;
+			var scaleRatio = 1 /ratio;
 			scale.name = 'viewport';
 			scale.content = 'width=device-width,' + 'initial-scale=' + scaleRatio + ', maximum-scale=' + scaleRatio + ', minimum-scale=' +
 				scaleRatio + ', user-scalable=no';
