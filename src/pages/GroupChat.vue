@@ -3,7 +3,7 @@
 <div class="wrapper">
 	<Header goback='true' groupInfo='true' :chatTitle="groupInfoGetter.group_name"></Header>
 	<ul>
-		<li v-for="item in message">
+		<li v-for="(item,index) in message" :key="index">
 			<ChatItem v-if="userInfo.user_id === item.from_user" :href="item.from_user" :img="item.avator" me="true" :msg="item.message" :name="item.name" :time="item.time"></ChatItem>
 			<ChatItem v-else :img="item.avator" :msg="item.message" :href="item.from_user" :name="item.name" :time="item.time"></ChatItem>
 		</li>
