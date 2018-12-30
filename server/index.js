@@ -8,17 +8,17 @@ const socketModel = require("./models/soketHander");
 const multer = require('multer')
 const app = new Koa();
 
-app.use('/images' ,express.static('images'))
+// app.use('/images' ,express.static('images'))
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'images/')
-    },
-    filename: function(req, file, cb) {
-        cb(null, Date.now()+'-'+file.originalname)
-    }
-})
-const upload = multer({storage})
+// const storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//         cb(null, 'images/')
+//     },
+//     filename: function(req, file, cb) {
+//         cb(null, Date.now()+'-'+file.originalname)
+//     }
+// })
+// const upload = multer({storage})
 
 // const server = require('http').Server(app.callback());
 // const io = require('socket.io')(server);
@@ -88,15 +88,15 @@ io.on("connection", socket => {
   });
 });
 
-app.post('/upload_img', upload.single('image'), function(req, res, next) {
-  const file = req.file
-  console.log('文件原始名: %s', file.originalname)
-  console.log('文件保存路径 %s', file.path)
-  res.json({
-      success: true,
-      imageUrl: file.path
-  })
-})
+// app.post('/upload_img', upload.single('image'), function(req, res, next) {
+//   const file = req.file
+//   console.log('文件原始名: %s', file.originalname)
+//   console.log('文件保存路径 %s', file.path)
+//   res.json({
+//       success: true,
+//       imageUrl: file.path
+//   })
+// })
 
 // app.listen(3000);
 console.log("服务器已启动,端口3000");
