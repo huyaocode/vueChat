@@ -51,5 +51,6 @@ router.post('/register', register) //注册
   .get('/change_passwd', verify, userInfo.changePasswd) // 修改密码
   .post('/confession_to_other', verify, confession.confession_to_other)  // 向他人表白
   .get('/get_received_confession', verify, confession.get_received_confession) // 获取已收到表白
+  .get('/get_all_confession', verify, confession.get_all_confession) // 获取所有告白
 
 module.exports = router

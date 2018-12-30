@@ -36,7 +36,18 @@ let get_received_confession = function(ctx) {
   }
 }
 
+
+let get_all_confession = function(ctx) {
+  let RowDataPacket = await confessionModel.get_all_confession()
+  let res = JSON.parse(JSON.stringify(RowDataPacket))
+  ctx.body = {
+    success: true,
+    data: res
+  }
+}
+
 module.exports = {
   confession_to_other,
-  get_received_confession
+  get_received_confession,
+  get_all_confession
 }

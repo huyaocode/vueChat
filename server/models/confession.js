@@ -31,8 +31,14 @@ let check_confession = function(user_id) {
   return query(_sql, user_id)
 }
 
+let get_all_confession = function() {
+  let _sql = 'select * from user_confession'
+  return query(_sql)
+}
+
 module.exports = {
   confession_to_other,
   get_received_confession,
-  check_confession
+  check_confession,
+  get_all_confession
 }
