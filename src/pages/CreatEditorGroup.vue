@@ -20,19 +20,19 @@
           alt=""
         >
       </div>
-      <p>群名:</br><input
+      <p>群名:<br /><input
           type="text"
           v-model="groupInfo.group_name"
           placeholder="不超过10个字哦"
           maxlength="10"
         /></p>
-      <p>群公告:</br><textarea
+      <p>群公告:<br /><textarea
           rows="5"
           type="text"
           v-model="groupInfo.group_notice"
           placeholder="不超过60个字哦"
           maxlength="60"
-        /></textarea>
+        ></textarea>
       </p>
     </div>
     <div
