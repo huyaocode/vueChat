@@ -10,14 +10,14 @@
       chatTitle="身份认证"
     ></Header>
     <div class="content">
-      
+
       <h2>
         你还没有通过认证
       </h2>
       <div class="pic">
-          <div class="plus">
-              +
-          </div>
+        <div class="plus">
+          +
+        </div>
       </div>
       <p>请上传学生证或一卡通照片</p>
     </div>
@@ -80,18 +80,18 @@ export default {
       margin: 1rem 0 0.6rem;
     }
     .pic {
-        margin: 0.2rem auto;
-        width: 5rem;
-        height: 3rem;
-        background: #fff;
-        position: relative;
-        .plus{
-            height: 1.5rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+      margin: 0.2rem auto;
+      width: 5rem;
+      height: 3rem;
+      background: #fff;
+      position: relative;
+      .plus {
+        height: 1.5rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
     p {
       font-size: 0.28rem;

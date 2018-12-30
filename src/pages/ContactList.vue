@@ -10,7 +10,7 @@
         aria-hidden="true"
       >
         <use xlink:href="#icon-pengyouquan"></use>
-      </svg><span>异性同学</span>
+      </svg><span>好友申请</span>
       <svg
         class="icon enter"
         aria-hidden="true"
