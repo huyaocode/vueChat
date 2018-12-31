@@ -250,3 +250,16 @@ create table user_confession
 		primary key (user_id)
 )
 comment '用户告白';
+
+-- ----------------- 认证表 -----------------------
+DROP TABLE IF EXISTS `approve`;
+
+create table approve
+(
+	user_id int not null,
+	image text null,
+	success int default 0 null,
+	constraint approve_pk
+		primary key (user_id)
+)
+comment '认证';
