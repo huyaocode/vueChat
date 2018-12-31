@@ -31,26 +31,12 @@
       goback='true'
       chatTitle="用户资料"
     ></Header>
-
+    <!-- 用户资料 -->
     <div class="content">
       <img
         :src="userInfo.avator"
         alt=""
       >
-      <p class="href">
-        <span @click="goGithub"><svg
-            class="icon"
-            aria-hidden="true"
-          >
-            <use xlink:href="#icon-github"></use>
-          </svg></span>
-        <span @click="goWebsite"><svg
-            class="icon"
-            aria-hidden="true"
-          >
-            <use xlink:href="#icon-web"></use>
-          </svg></span>
-      </p>
       <p v-if="this.isMyFriend">
         <svg
           class="icon"
@@ -72,6 +58,22 @@
           class="icon"
           aria-hidden="true"
         >
+          <use xlink:href="#icon-yonghu"></use>
+        </svg><span>昵称</span>：{{userInfo.github}}
+      </p>
+      <p>
+        <svg
+          class="icon"
+          aria-hidden="true"
+        >
+          <use xlink:href="#icon-yonghu"></use>
+        </svg><span>年级</span>：{{userInfo.website}}
+      </p>
+      <p>
+        <svg
+          class="icon"
+          aria-hidden="true"
+        >
           <use xlink:href="#icon-xingbie"></use>
         </svg><span>性别</span>：{{userInfo.sex === 0 ? '男' : '女' }}
       </p>
@@ -80,13 +82,13 @@
           class="icon"
           aria-hidden="true"
         >
-          <use xlink:href="#icon-placeholder"></use>
+          <use xlink:href="#icon-pen"></use>
         </svg><span>签名</span>：{{userInfo.place}}
       </p>
     </div>
 
     <div
-      v-if="this.isAddingMe"
+      v-if="this.isAddingMe && this.isMyFriend !== true && this.isHisFriend !== true "
       class="action"
     >
       <span
@@ -245,28 +247,6 @@ export default {
         }
       })
     },
-    //点击跳转到对方的gihub
-    goGithub () {
-      if (this.userInfo.github) {
-        window.location.href = this.userInfo.github;
-      } else {
-        this.$message({
-          message: '对方尚未放他的github链接哦',
-          type: "error"
-        });
-      }
-    },
-    //点击跳转到对方的网站
-    goWebsite () {
-      if (this.userInfo.website) {
-        window.location.href = this.userInfo.website;
-      } else {
-        this.$message({
-          message: '对方尚未放他的网站链接哦',
-          type: "error"
-        });
-      }
-    },
     //进入验证页面
     enterReqPage () {
       const path = `/user_info/verify/${this.$route.params.user_id}`
@@ -376,33 +356,33 @@ export default {
       }
       //编辑个人信息
       if (value.messageBoxEvent === 'editorInfo') {
-        //验证url
-        var urlP = /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-        var re = new RegExp(urlP);
-        console.log('value.myInfo.website', value.myInfo.website)
-        if (value.myInfo.website) {
-          if (!re.test(value.myInfo.website)) {
-            this.$message({
-              message: '请输入正确的网址',
-              type: "error"
-            });
-            return
-          } else {
-            value.myInfo.website = value.myInfo.website.substr(0, 4) != 'http' ? ('http://' + value.myInfo.website) : value.myInfo.website;
-          }
-        }
-        if (value.myInfo.github) {
-          if (!re.test(value.myInfo.github)) {
-            this.$message({
-              message: '请输入正确的网址',
-              type: "error"
-            });
-            return
-          } else {
-            value.myInfo.github = value.myInfo.github.substr(0, 4) != 'http' ? ('http://' + value.myInfo.github) : value.myInfo.github;
-          }
-        }
-        console.log(value.myInfo)
+        // //验证url
+        // var urlP = /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+        // var re = new RegExp(urlP);
+        // console.log('value.myInfo.website', value.myInfo.website)
+        // if (value.myInfo.website) {
+        //   if (!re.test(value.myInfo.website)) {
+        //     this.$message({
+        //       message: '请输入正确的网址',
+        //       type: "error"
+        //     });
+        //     return
+        //   } else {
+        //     value.myInfo.website = value.myInfo.website.substr(0, 4) != 'http' ? ('http://' + value.myInfo.website) : value.myInfo.website;
+        //   }
+        // }
+        // if (value.myInfo.github) {
+        //   if (!re.test(value.myInfo.github)) {
+        //     this.$message({
+        //       message: '请输入正确的网址',
+        //       type: "error"
+        //     });
+        //     return
+        //   } else {
+        //     value.myInfo.github = value.myInfo.github.substr(0, 4) != 'http' ? ('http://' + value.myInfo.github) : value.myInfo.github;
+        //   }
+        // }
+        // console.log(value.myInfo)
         axios.put('/api/v1/editor_info', {
           github: value.myInfo.github,
           website: value.myInfo.website,
@@ -431,9 +411,8 @@ export default {
   position: relative;
   padding-top: 0.1rem;
   .content {
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
+    left: 10%;
+    padding-left: 0.85rem;
     img {
       width: 2rem;
       height: 2rem;
@@ -441,14 +420,14 @@ export default {
       margin: 1rem 0 0.6rem;
     }
     p {
-      font-size: 0.28rem;
+      font-size: 0.3rem;
       line-height: 0.8rem;
       color: #333;
       .icon {
         font-size: 1.6em;
       }
       span {
-        font-size: 0.14rem;
+        font-size: 0.24rem;
       }
     }
     .href {
@@ -460,9 +439,9 @@ export default {
     }
   }
   .action {
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
-    top: 8.8rem;
+    /* top: 8.8rem; */
     text-align: center;
     span {
       display: inline-block;

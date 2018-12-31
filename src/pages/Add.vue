@@ -40,7 +40,7 @@
       </svg>
       <span>有缘的同学</span>
     </div>
-    <ul class="flist">
+    <ul>
       <li
         class="useritem"
         v-for="user in strangerlist"
@@ -102,7 +102,9 @@ export default {
 <style lang="scss" scoped>
 .useritem {
   display: flex;
-  border-bottom: 2px solid #fff;
+  border-top: 1px solid #eee;
+  border-top: 1px solid #eee;
+  background: #fff;
   height: 1rem;
   padding: 0.05rem 0.15rem 0.05rem;
   position: relative;
