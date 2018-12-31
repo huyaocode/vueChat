@@ -178,7 +178,7 @@ CREATE TABLE `user_info` (
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '在线状态,0离线,1在线',
   `socketid` varchar(20) NOT NULL DEFAULT '' COMMENT '登陆时的socketid',
   `website` varchar(50) DEFAULT NULL COMMENT '个人网站',
-  `github` varchar(50) DEFAULT NULL,
+  `github` varchar(50) DEFAULT '昵称',
   `intro` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

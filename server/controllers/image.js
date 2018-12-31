@@ -49,7 +49,7 @@ const getApprove = async function (ctx, next) {
  * @param {*} next
  */
 const getAllApprove = async function (ctx, next) {
-  let RowDataPacket = await imageModel.getApprove()
+  let RowDataPacket = await imageModel.getAllApprove()
   let res = JSON.parse(JSON.stringify(RowDataPacket))
   ctx.body = {
     success: true,
