@@ -8,14 +8,14 @@ const md5 = require("md5");
  */
 
 let getUserInfo = async (ctx, next) => {
-	const RowDataPacket = await userModel.getUserInfo(ctx.query.user_id),
-		userInfo = JSON.parse(JSON.stringify(RowDataPacket));
-	ctx.body = {
-		success: true,
-		data: {
-			userInfo: userInfo
-		}
-	};
+  const RowDataPacket = await userModel.getUserInfo(ctx.query.user_id),
+    userInfo = JSON.parse(JSON.stringify(RowDataPacket));
+  ctx.body = {
+    success: true,
+    data: {
+      userInfo: userInfo
+    }
+  };
 };
 
 /**
@@ -25,14 +25,14 @@ let getUserInfo = async (ctx, next) => {
  */
 
 let findUIByName = async (ctx, next) => {
-	const RowDataPacket = await userModel.findUIByName(ctx.query.name),
-		userInfo = JSON.parse(JSON.stringify(RowDataPacket));
-	ctx.body = {
-		success: true,
-		data: {
-			userInfo: userInfo
-		}
-	};
+  const RowDataPacket = await userModel.findUIByName(ctx.query.name),
+    userInfo = JSON.parse(JSON.stringify(RowDataPacket));
+  ctx.body = {
+    success: true,
+    data: {
+      userInfo: userInfo
+    }
+  };
 };
 
 /**
@@ -43,23 +43,23 @@ let findUIByName = async (ctx, next) => {
  */
 
 let isFriend = async (ctx, next) => {
-	const RowDataPacket1 = await userModel.isFriend(
-			ctx.user_id,
-			ctx.query.other_user_id
-		),
-		RowDataPacket2 = await userModel.isFriend(
-			ctx.query.other_user_id,
-			ctx.user_id
-		),
-		isMyFriend = JSON.parse(JSON.stringify(RowDataPacket1)),
-		isHisFriend = JSON.parse(JSON.stringify(RowDataPacket2));
-	ctx.body = {
-		success: true,
-		data: {
-			isMyFriend: isMyFriend,
-			isHisFriend: isHisFriend
-		}
-	};
+  const RowDataPacket1 = await userModel.isFriend(
+      ctx.user_id,
+      ctx.query.other_user_id
+    ),
+    RowDataPacket2 = await userModel.isFriend(
+      ctx.query.other_user_id,
+      ctx.user_id
+    ),
+    isMyFriend = JSON.parse(JSON.stringify(RowDataPacket1)),
+    isHisFriend = JSON.parse(JSON.stringify(RowDataPacket2));
+  ctx.body = {
+    success: true,
+    data: {
+      isMyFriend: isMyFriend,
+      isHisFriend: isHisFriend
+    }
+  };
 };
 
 /**
@@ -70,38 +70,38 @@ let isFriend = async (ctx, next) => {
  *
  */
 let agreeBeFriend = async (ctx, next) => {
-	const RowDataPacket1 = await userModel.isFriend(
-			ctx.user_id,
-			ctx.request.body.other_user_id
-		),
-		RowDataPacket2 = await userModel.isFriend(
-			ctx.request.body.other_user_id,
-			ctx.user_id
-		),
-		isMyFriend = JSON.parse(JSON.stringify(RowDataPacket1)),
-		isHisFriend = JSON.parse(JSON.stringify(RowDataPacket2));
-	console.log("isMyFriend", isMyFriend);
-	console.log("isHisFriend", isHisFriend);
-	//变成本机用户的朋友
-	if (isMyFriend.length === 0) {
-		await userModel.addAsFriend(
-			ctx.user_id,
-			ctx.request.body.other_user_id,
-			ctx.request.body.time
-		);
-	}
-	//本机用户变成ta的朋友
-	if (isHisFriend.length === 0) {
-		await userModel.addAsFriend(
-			ctx.request.body.other_user_id,
-			ctx.user_id,
-			ctx.request.body.time
-		);
-	}
-	ctx.body = {
-		success: true
-	};
-	console.log("添加好友成功");
+  const RowDataPacket1 = await userModel.isFriend(
+      ctx.user_id,
+      ctx.request.body.other_user_id
+    ),
+    RowDataPacket2 = await userModel.isFriend(
+      ctx.request.body.other_user_id,
+      ctx.user_id
+    ),
+    isMyFriend = JSON.parse(JSON.stringify(RowDataPacket1)),
+    isHisFriend = JSON.parse(JSON.stringify(RowDataPacket2));
+  console.log("isMyFriend", isMyFriend);
+  console.log("isHisFriend", isHisFriend);
+  //变成本机用户的朋友
+  if (isMyFriend.length === 0) {
+    await userModel.addAsFriend(
+      ctx.user_id,
+      ctx.request.body.other_user_id,
+      ctx.request.body.time
+    );
+  }
+  //本机用户变成ta的朋友
+  if (isHisFriend.length === 0) {
+    await userModel.addAsFriend(
+      ctx.request.body.other_user_id,
+      ctx.user_id,
+      ctx.request.body.time
+    );
+  }
+  ctx.body = {
+    success: true
+  };
+  console.log("添加好友成功");
 };
 
 /**
@@ -111,18 +111,18 @@ let agreeBeFriend = async (ctx, next) => {
  * @return
  */
 let delFriend = async (ctx, next) => {
-	await userModel.delFriend(ctx.user_id, ctx.query.other_user_id)
-		.then(result => {
-			if (result) {
-				ctx.body = {
-					success: true
-				};
-				console.log("删除好友成功");
-			}
-		})
-		.catch(err => {
-			console.log(err);
-		});
+  await userModel.delFriend(ctx.user_id, ctx.query.other_user_id)
+    .then(result => {
+      if (result) {
+        ctx.body = {
+          success: true
+        };
+        console.log("删除好友成功");
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 /**
@@ -133,22 +133,22 @@ let delFriend = async (ctx, next) => {
  * @return
  */
 let shieldFriend = async (ctx, next) => {
-	await userModel.delFriend(
-			ctx.request.body.status,
-			ctx.request.body.user_id,
-			ctx.request.body.other_user_id
-		).then(result => {
-			console.log("shieldFriend", result);
-			if (result) {
-				ctx.body = {
-					success: true
-				};
-				console.log("(取消)屏蔽好友成功");
-			}
-		})
-		.catch(err => {
-			console.log(err);
-		});
+  await userModel.delFriend(
+      ctx.request.body.status,
+      ctx.request.body.user_id,
+      ctx.request.body.other_user_id
+    ).then(result => {
+      console.log("shieldFriend", result);
+      if (result) {
+        ctx.body = {
+          success: true
+        };
+        console.log("(取消)屏蔽好友成功");
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 /**
@@ -159,22 +159,22 @@ let shieldFriend = async (ctx, next) => {
  * @return
  */
 let editorRemark = async (ctx, next) => {
-	await userModel.editorRemark(
-			ctx.request.body.remark,
-			ctx.user_id,
-			ctx.request.body.other_user_id
-		).then(result => {
-			console.log("editorRemark", result);
-			if (result) {
-				ctx.body = {
-					success: true
-				};
-				console.log("修改备注成功");
-			}
-		})
-		.catch(err => {
-			console.log(err);
-		});
+  await userModel.editorRemark(
+      ctx.request.body.remark,
+      ctx.user_id,
+      ctx.request.body.other_user_id
+    ).then(result => {
+      console.log("editorRemark", result);
+      if (result) {
+        ctx.body = {
+          success: true
+        };
+        console.log("修改备注成功");
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 /**
@@ -187,20 +187,20 @@ let editorRemark = async (ctx, next) => {
  * @return
  */
 let editorInfo = async (ctx, next) => {
-	const data = [ctx.request.body.github, ctx.request.body.website, ctx.request.body.sex, ctx.request.body.place, ctx.user_id]
-	console.log('editorInfo', data)
-	await userModel.editorInfo(data).then(result => {
-			console.log("editorInfo", result);
-			if (result) {
-				ctx.body = {
-					success: true
-				};
-				console.log("修改个人信息成功");
-			}
-		})
-		.catch(err => {
-			console.log(err);
-		});
+  const data = [ctx.request.body.github, ctx.request.body.website, ctx.request.body.sex, ctx.request.body.place, ctx.user_id]
+  console.log('editorInfo', data)
+  await userModel.editorInfo(data).then(result => {
+      console.log("editorInfo", result);
+      if (result) {
+        ctx.body = {
+          success: true
+        };
+        console.log("修改个人信息成功");
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 /**
@@ -212,12 +212,16 @@ let editorInfo = async (ctx, next) => {
  */
 let changePasswd = async (ctx, next) => {
   let body = ctx.request.body
-  let {user_id, old_pwd, new_pwd} = body;
+  let {
+    user_id,
+    old_pwd,
+    new_pwd
+  } = body;
   let RowDataPacket = await userModel.findDataByUserid(user_id)
   let res = JSON.parse(JSON.stringify(RowDataPacket))
-  if(res.length > 0) {
+  if (res.length > 0) {
     let data = res[0]
-    if(data["password"] === md5(old_pwd)) {
+    if (data["password"] === md5(old_pwd)) {
       new_pwd = md5(new_pwd)
       await userModel.change_passwd(user_id, new_pwd)
       ctx.body = {
@@ -226,9 +230,9 @@ let changePasswd = async (ctx, next) => {
       }
     } else {
       ctx.body = {
-				success: false,
-				message: "密码错误"
-			};
+        success: false,
+        message: "密码错误"
+      };
     }
   } else {
     ctx.body = {
@@ -239,13 +243,13 @@ let changePasswd = async (ctx, next) => {
 }
 
 module.exports = {
-	getUserInfo,
-	findUIByName,
-	isFriend,
-	agreeBeFriend,
-	delFriend,
-	shieldFriend,
-	editorRemark,
+  getUserInfo,
+  findUIByName,
+  isFriend,
+  agreeBeFriend,
+  delFriend,
+  shieldFriend,
+  editorRemark,
   editorInfo,
   changePasswd
 };

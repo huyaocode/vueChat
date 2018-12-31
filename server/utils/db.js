@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-const dbConfig  = require('../config').db;
+const dbConfig = require('../config').db;
 const pool = mysql.createPool({
   user: dbConfig.user,
   password: dbConfig.password,
@@ -8,19 +8,19 @@ const pool = mysql.createPool({
 })
 
 
-let query = function( sql, values ) {
+let query = function (sql, values) {
 
-  return new Promise(( resolve, reject ) => {
-    pool.getConnection(function(err, connection) {
+  return new Promise((resolve, reject) => {
+    pool.getConnection(function (err, connection) {
       if (err) {
-        resolve( err )
+        resolve(err)
       } else {
-        connection.query(sql, values, ( err, rows) => {
+        connection.query(sql, values, (err, rows) => {
 
-          if ( err ) {
-            reject( err )
+          if (err) {
+            reject(err)
           } else {
-            resolve( rows )
+            resolve(rows)
           }
           connection.release()
         })

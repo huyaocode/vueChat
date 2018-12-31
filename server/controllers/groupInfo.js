@@ -9,13 +9,13 @@ const uuidv1 = require('uuid/v1');
  */
 
 let joinGroup = async (ctx, next) => {
-	await groupInfo.joinGroup(ctx.user_id, ctx.request.body.group_id)
-		.then((res) => {
-			ctx.body = {
-				success: true
-			};
-			console.log("加入群成功");
-		});
+  await groupInfo.joinGroup(ctx.user_id, ctx.request.body.group_id)
+    .then((res) => {
+      ctx.body = {
+        success: true
+      };
+      console.log("加入群成功");
+    });
 };
 
 /**
@@ -25,17 +25,17 @@ let joinGroup = async (ctx, next) => {
  * @return
  */
 let isInGroup = async (ctx, next) => {
-	const RowDataPacket = await groupInfo.isInGroup(
-			ctx.user_id,
-			ctx.query.group_id
-		),
-		group_user = JSON.parse(JSON.stringify(RowDataPacket));
-	ctx.body = {
-		success: true,
-		data: {
-			group_user: group_user
-		}
-	};
+  const RowDataPacket = await groupInfo.isInGroup(
+      ctx.user_id,
+      ctx.query.group_id
+    ),
+    group_user = JSON.parse(JSON.stringify(RowDataPacket));
+  ctx.body = {
+    success: true,
+    data: {
+      group_user: group_user
+    }
+  };
 };
 
 /**
@@ -45,16 +45,16 @@ let isInGroup = async (ctx, next) => {
  * @return {Promise}       [description]
  */
 let createGroup = async (ctx, next) => {
-	const uuid = uuidv1();
-	console.log('uuid', uuid)
-	const arr = [uuid, ctx.request.body.group_name, ctx.request.body.group_notice, ctx.request.body.group_avator, ctx.name, ctx.request.body.creater_time];
-	await groupInfo.createGroup(arr);
-	ctx.body = {
-		success: true,
-		data: {
-			group_id: uuid
-		}
-	};
+  const uuid = uuidv1();
+  console.log('uuid', uuid)
+  const arr = [uuid, ctx.request.body.group_name, ctx.request.body.group_notice, ctx.request.body.group_avator, ctx.name, ctx.request.body.creater_time];
+  await groupInfo.createGroup(arr);
+  ctx.body = {
+    success: true,
+    data: {
+      group_id: uuid
+    }
+  };
 };
 
 /**
@@ -64,16 +64,16 @@ let createGroup = async (ctx, next) => {
  * @return {Promise}       [success: true]
  */
 let exitGroup = async (ctx, next) => {
-	await groupInfo.exitGroup(ctx.user_id, ctx.query.group_id);
-	ctx.body = {
-		success: true
-	};
-	console.log('退群成功')
+  await groupInfo.exitGroup(ctx.user_id, ctx.query.group_id);
+  ctx.body = {
+    success: true
+  };
+  console.log('退群成功')
 };
 
 module.exports = {
-	joinGroup,
-	isInGroup,
-	createGroup,
-	exitGroup
+  joinGroup,
+  isInGroup,
+  createGroup,
+  exitGroup
 };
