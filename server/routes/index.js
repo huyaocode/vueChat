@@ -11,7 +11,8 @@ const router = require('koa-router')(),
 	newFriends = require('../controllers/newFriends.js'),
   groupInfo = require('../controllers/groupInfo.js'),
   contactList = require("../controllers/contactList"),
-  confession = require('../controllers/confession');
+  confession = require('../controllers/confession'),
+  image = require('../controllers/image');
 
 router.prefix(`/${baseApi}`)
 router.all("*", async (ctx, next) => {
@@ -52,5 +53,6 @@ router.post('/register', register) //注册
   .post('/confession_to_other', verify, confession.confession_to_other)  // 向他人表白
   .get('/get_received_confession', verify, confession.get_received_confession) // 获取已收到表白
   .get('/get_all_confession', verify, confession.get_all_confession) // 获取所有告白
+  .post('/save_avater', verify, image.saveAvater) // 存头像
 
 module.exports = router
