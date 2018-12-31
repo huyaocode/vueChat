@@ -14,50 +14,74 @@
       list-style-type: none;
     }
   }
-
-  .input-msg {
-    height: 0.46rem;
+  .bottom {
     position: fixed;
     bottom: 0.03rem;
-    display: flex;
-    display: -webkit-flex;
-    /* Safari */
     width: 100%;
-    z-index: 999;
-
-    textarea {
-      width: 87.8%;
-      margin: 0 0.06rem;
-      padding-top: 0.07rem;
-      padding-left: 0.06rem;
-      border-radius: 0.02rem;
-      outline: none;
-      resize: none;
-      border: none;
-      overflow-y: hidden;
-      font: 0.16rem/0.18rem 'Microsoft Yahei';
-    }
-
-    p.btn {
-      font-size: 0.2rem;
+    .input-msg {
       display: flex;
       display: -webkit-flex;
       /* Safari */
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-right: 0.06rem;
-      height: 100%;
-      width: 11%;
-      background: #ccc;
-      color: white;
-      border-radius: 0.02rem;
-      cursor: not-allowed;
-      font-family: 'Microsoft Yahei';
+      width: 100%;
+      z-index: 999;
 
-      &.enable {
-        background: #1E90FF;
-        cursor: pointer;
+      textarea {
+        font-size: 0.5rem;
+        letter-spacing: 1px;
+        line-height: 0.8rem;
+        width: 87.8%;
+        margin: 0 0.06rem;
+        padding-top: 0.07rem;
+        padding-left: 0.06rem;
+        border-radius: 0.02rem;
+        outline: none;
+        resize: none;
+        border: none;
+        overflow-y: scroll;
+        font: 0.16rem/0.18rem 'Microsoft Yahei';
+      }
+
+      p.btn {
+        font-size: 0.2rem;
+        display: flex;
+        display: -webkit-flex;
+        /* Safari */
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-right: 0.06rem;
+        height: 100%;
+        width: 12%;
+        font-size: 0.3rem;
+        padding: 0.1rem;
+        background: #ccc;
+        color: white;
+        border-radius: 0.02rem;
+        cursor: not-allowed;
+        font-family: 'Microsoft Yahei';
+
+        &.enable {
+          background: #1e90ff;
+          cursor: pointer;
+        }
+      }
+      p.emoji {
+        width: 8%;
+      }
+    }
+    ul.emojiplan {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 2rem;
+      overflow-y: scroll;
+      li {
+        display: inline-block;
+        width: 80px;
+        padding: 0.1rem;
+        float: left;
+        font-size: 0.4rem;
       }
     }
   }

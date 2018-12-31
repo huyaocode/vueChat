@@ -160,7 +160,7 @@ export default {
   .action {
     position: absolute;
     width: 100%;
-    top: 7.6rem;
+    top: 4.6rem;
     text-align: center;
     div {
       /* display: inline-block; */
