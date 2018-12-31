@@ -175,7 +175,7 @@ CREATE TABLE `user_info` (
   `name` varchar(20) NOT NULL DEFAULT 'NOT NULL' COMMENT '用户名',
   `password` varchar(40) NOT NULL DEFAULT 'NOT NULL' COMMENT '密码',
   `sex` varchar(2) NOT NULL DEFAULT '0' COMMENT '性别',
-  `avator` varchar(100) NOT NULL DEFAULT 'http://ooytyiziz.bkt.clouddn.com/people5.jpg' COMMENT '头像',
+  `avator` varchar(100) NOT NULL DEFAULT 'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg' COMMENT '头像',
   `place` varchar(50) DEFAULT NULL COMMENT '来自哪里',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '在线状态,0离线,1在线',
   `socketid` varchar(20) NOT NULL DEFAULT '' COMMENT '登陆时的socketid',
@@ -190,11 +190,11 @@ LOCK TABLES `user_info` WRITE;
 
 INSERT INTO `user_info` (`id`, `name`, `password`, `sex`, `avator`, `place`, `status`, `socketid`, `website`, `github`, `intro`)
 VALUES
-	(1,'路飞','6512bd43d9caa6e02c990b0a82652dca',0,'http://ooytyiziz.bkt.clouddn.com/people1.jpg','厦门',0,'tIckUQsrpFm_Wki0AAAF','','https://github.com/Hxvin',NULL),
-	(2,'索隆','b6d767d2f8ed5d21a44b0e5886680cb9',1,'http://ooytyiziz.bkt.clouddn.com/people2.jpg','深圳',0,'l12EoQ8PbnmvupNQAAAP',NULL,'',NULL),
-	(3,'乔治','182be0c5cdcd5072bb1864cdee4d3d6e',1,'http://ooytyiziz.bkt.clouddn.com/people3.jpg','杭州',0,'ue0dCyN0zAyJurW-AABQ',NULL,NULL,NULL),
-	(4,'罗','f7177163c833dff4b38fc8d2872f1ec6',1,'http://ooytyiziz.bkt.clouddn.com/people4.jpg','',0,'67kamGg8ibMLEjpZAAAD',NULL,NULL,NULL),
-	(14,'罗宾','b6d767d2f8ed5d21a44b0e5886680cb9',1,'http://ooytyiziz.bkt.clouddn.com/people6.jpg',NULL,0,'9sictmm25dBk8tj2AAAC',NULL,NULL,NULL);
+	(1,'路飞','6512bd43d9caa6e02c990b0a82652dca',0,'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg','厦门',0,'tIckUQsrpFm_Wki0AAAF','','https://github.com/Hxvin',NULL),
+	(2,'索隆','b6d767d2f8ed5d21a44b0e5886680cb9',1,'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg','深圳',0,'l12EoQ8PbnmvupNQAAAP',NULL,'',NULL),
+	(3,'乔治','182be0c5cdcd5072bb1864cdee4d3d6e',1,'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg','杭州',0,'ue0dCyN0zAyJurW-AABQ',NULL,NULL,NULL),
+	(4,'罗','f7177163c833dff4b38fc8d2872f1ec6',1,'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg','',0,'67kamGg8ibMLEjpZAAAD',NULL,NULL,NULL),
+	(14,'罗宾','b6d767d2f8ed5d21a44b0e5886680cb9',1,'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg',NULL,0,'9sictmm25dBk8tj2AAAC',NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 UNLOCK TABLES;
