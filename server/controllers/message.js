@@ -19,3 +19,15 @@ module.exports = async (ctx, next) => {
     console.log(error);
   }
 };
+
+/**
+ * 撤销消息
+ */
+module.exports.undoMessage = async function(ctx) {
+  const {from_user_id, to_user_id, time} = ctx.request.body
+  await msgModel.undoMessage(from_user_id, to_user_id, time)
+  ctx.body = {
+    success: true,
+    message: "撤销成功"
+  }
+}
