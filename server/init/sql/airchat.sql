@@ -33,7 +33,7 @@ CREATE TABLE `group_info` (
   `group_id` char(100) NOT NULL,
   `group_name` varchar(20) NOT NULL DEFAULT '交流群' COMMENT '群名称',
   `group_notice` varchar(100) NOT NULL DEFAULT '欢迎大家入群交流~' COMMENT '群公告',
-  `group_avator` varchar(50) NOT NULL DEFAULT 'http://ooytyiziz.bkt.clouddn.com/peoples1.jpg' COMMENT '群头像',
+  `group_avator` varchar(50) NOT NULL DEFAULT 'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg' COMMENT '群头像',
   `group_creater` varchar(10) NOT NULL DEFAULT '' COMMENT '群创建人',
   `creater_time` int(11) NOT NULL COMMENT '群创建时间',
   PRIMARY KEY (`id`)
@@ -44,7 +44,7 @@ LOCK TABLES `group_info` WRITE;
 
 INSERT INTO `group_info` (`id`, `group_id`, `group_name`, `group_notice`, `group_avator`, `group_creater`, `creater_time`)
 VALUES
-	(1,'8eeccfc0-0f1e-11e8-892e-5ba8fc68dc36','交流群','交流群','http://ooytyiziz.bkt.clouddn.com/peoples1.jpg','罗宾',1518348455);
+	(1,'8eeccfc0-0f1e-11e8-892e-5ba8fc68dc36','交流群','交流群','http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg','罗宾',1518348455);
 
 /*!40000 ALTER TABLE `group_info` ENABLE KEYS */;
 UNLOCK TABLES;

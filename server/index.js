@@ -79,3 +79,5 @@ io.on("connection", socket => {
 
 // app.listen(3000);
 console.log("服务器已启动,端口3000");
+
+module.exports = app
