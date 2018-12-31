@@ -17,7 +17,7 @@ module.exports = async (ctx, next) => {
         message: "用户名已存在"
       };
     } else {
-    ctx.body = {
+      ctx.body = {
         success: true,
         message: "注册成功！"
       };

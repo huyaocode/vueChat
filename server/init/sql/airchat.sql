@@ -238,6 +238,8 @@ UNLOCK TABLES;
 
 
 --  ------------------ 表白表  ------------------------------------------------------
+DROP TABLE IF EXISTS `user_confession`;
+
 create table user_confession
 (
 	user_id int not null,

@@ -3,7 +3,9 @@ const bodyParser = require("koa-bodyparser");
 const cors = require("koa2-cors");
 const dbConfig = require("./config").db;
 const router = require("./routes/index");
-const { query } = require("./utils/db");
+const {
+  query
+} = require("./utils/db");
 const socketModel = require("./models/soketHander");
 const app = new Koa();
 
@@ -25,7 +27,7 @@ app.use(cors({
   allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
 
-app.use(async(ctx, next)=> {
+app.use(async (ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', "*")
   ctx.set('Access-Control-Allow-Credentials', true);
   ctx.set('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE');
@@ -48,25 +50,25 @@ io.on("connection", socket => {
   socket.on("update", async userId => {
     await socketModel.saveUserSocketId(userId, socketId);
   });
- //私聊
+  //私聊
   socket.on("sendPrivateMsg", async data => {
     const arr = await socketModel.getUserSocketId(data.to_user);
     const RowDataPacket = arr[0];
     const socketid = JSON.parse(JSON.stringify(RowDataPacket)).socketid;
     io.to(socketid).emit("getPrivateMsg", data);
   });
- // 群聊
+  // 群聊
   socket.on("sendGroupMsg", async data => {
     io.sockets.emit("getGroupMsg", data);
   });
 
- //加好友请求
+  //加好友请求
   socket.on("sendRequest", async data => {
     console.log("sendRequest", data);
     const arr = await socketModel.getUserSocketId(data.to_user);
     const RowDataPacket = arr[0];
     const socketid = JSON.parse(JSON.stringify(RowDataPacket)).socketid;
-    console.log('给谁的socketid',socketid)
+    console.log('给谁的socketid', socketid)
     io.to(socketid).emit("getresponse", data);
   });
 
