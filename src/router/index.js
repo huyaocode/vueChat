@@ -18,6 +18,7 @@ import CreatEditorGroup from '@/pages/CreatEditorGroup'
 import Auth from '@/pages/Auth'
 import About from '@/pages/About'
 import Confession from '@/pages/Confession'
+import ConfessionToOther from '@/pages/ConfessionToOther'
 
 import axios from 'axios'
 
@@ -121,6 +122,10 @@ const router = new Router({
     {
       path: '/confession',
       component: Confession
+    },
+    {
+      path: '/confession_to_other',
+      component: ConfessionToOther
     },
     {
       path: '/',

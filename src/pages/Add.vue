@@ -47,8 +47,7 @@
         :key="user.id"
         @click="enterUserCard(user.id)"
       >
-        <div class="head-pic">
-        </div>
+        <div class="head-pic" :style="{backgroundImage: `url(${user.avator})`}"> </div>
         <div class="username">{{user.name}}</div>
         <button class="add">加好友</button>
       </li>
@@ -113,6 +112,9 @@ export default {
     width: 0.8rem;
     height: 0.8rem;
     background-color: #f0ecec;
+    background-position:center;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   .username {
     margin-left: 0.2rem;
