@@ -16,31 +16,45 @@
           :href="item.from_user"
           :img="item.avator"
           me="true"
-          :msg="item.message"
+          :msg="decodeMsg(item.message)"
           :name="item.name"
           :time="item.time"
         ></ChatItem>
         <ChatItem
           v-else
           :img="item.avator"
-          :msg="item.message"
+          :msg="decodeMsg(item.message)"
           :href=" item.from_user "
           :name="item.name"
           :time="item.time"
         ></ChatItem>
       </li>
     </ul>
-    <div class="input-msg">
-      <textarea
-        v-model="inputMsg"
-        @keydown.enter.prevent="sendMessage"
-        ref="message"
-      ></textarea>
-      <p
-        class="btn"
-        :class="{'enable':inputMsg!=''}"
-        @click="sendMessage"
-      >{{btnInfo}}</p>
+    <div class="bottom">
+      <div class="input-msg">
+        <textarea
+          v-model="inputMsg"
+          @keydown.enter.prevent="sendMessage"
+          ref="message"
+        ></textarea>
+        <p
+          class="btn"
+          :class="{'enable':inputMsg!=''}"
+          @click="sendMessage"
+        >{{btnInfo}}</p>
+        <p
+          @click="chooseEmoji"
+          class="btn emoji"
+        >🙂</p>
+      </div>
+      <ul class="emojiplan" v-show="showEmojis">
+        <li
+          class="item"
+          v-for="(e,index) in emojiArr"
+          :key="index"
+          @click="() => addEmoji(e)"
+        >{{e}}</li>
+      </ul>
     </div>
   </div>
 </template>
@@ -72,6 +86,8 @@ export default {
         place: '',
         status: ''
       },
+      showEmojis: false,
+      emojis: '😀 😃 😄 😁 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 😘 😗 😙 😚 😋 😛 😜 🤪 🤨 🧐 🤓 😎 🤩 😏 😒 😞 😔 😟 😕 🙁 😣 😖 😫 😩 👅 👈 😈 👿 🧦 👟 👞 👓 👠 👡 🐮 🐷 🐵 🐛 🐝 🦄 🦐 🐸 🦐 🦔 🌖 🌜 ☘ ️🌚 🌞 💦 🍭 ❤ ️🧡 💛 💚 💙 💜 🖤 💔 👩 👨 🧑 👧 👦 👶 👌 🙏 👍 🙆‍',
       isMyFriend: false, //他是否是我的好友
       isHisFriend: false, //我是否是他的好友
       fromUserInfo: {}, //用户自己
@@ -82,7 +98,10 @@ export default {
   computed: {
     ...mapGetters([
       'someOneInfoGetter'
-    ])
+    ]),
+    emojiArr () {
+      return this.emojis.split(' ');
+    }
   },
 
   watch: {
@@ -92,6 +111,17 @@ export default {
   },
 
   methods: {
+    decodeMsg(msg) {
+      return decodeURIComponent(msg)
+    },
+    chooseEmoji () {
+      this.showEmojis = !this.showEmojis;
+    },
+    addEmoji(e) {
+      console.log(e)
+      
+      this.inputMsg += e;
+    },
     //获取数据库的消息
     getPrivateMsg () {
       axios.get(
@@ -160,12 +190,13 @@ export default {
     },
     //用数据库存消息
     saveMsgByDB () {
+      let msg = encodeURIComponent(this.inputMsg);
       const data = {
         from_user: this.fromUserInfo.user_id, //自己的id
         to_user: this.toUserInfo.to_user, //对方的id
         name: this.fromUserInfo.name, //自己的昵称
         avator: this.fromUserInfo.avator, //自己的头像
-        message: this.inputMsg, //消息内容
+        message: msg, //消息内容
         status: '1', //是否在线 0为不在线 1为在线
         time: Date.parse(new Date()) / 1000 //时间
       }
