@@ -2,11 +2,9 @@
 # Sequel Pro SQL dump
 # Version 4541
 #
-# http://www.sequelpro.com/
-# https://github.com/sequelpro/sequelpro
 #
 # Host: localhost (MySQL 5.6.35)
-# Database: airchat
+# Database: vueChat
 # Generation Time: 2018-02-23 10:14:21 +0000
 # ************************************************************
 
@@ -33,7 +31,7 @@ CREATE TABLE `group_info` (
   `group_id` char(100) NOT NULL,
   `group_name` varchar(20) NOT NULL DEFAULT '交流群' COMMENT '群名称',
   `group_notice` varchar(100) NOT NULL DEFAULT '欢迎大家入群交流~' COMMENT '群公告',
-  `group_avator` varchar(50) NOT NULL DEFAULT 'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg' COMMENT '群头像',
+  `group_avator` text NOT NULL DEFAULT 'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg' COMMENT '群头像',
   `group_creater` varchar(10) NOT NULL DEFAULT '' COMMENT '群创建人',
   `creater_time` int(11) NOT NULL COMMENT '群创建时间',
   PRIMARY KEY (`id`)
@@ -175,7 +173,7 @@ CREATE TABLE `user_info` (
   `name` varchar(20) NOT NULL DEFAULT 'NOT NULL' COMMENT '用户名',
   `password` varchar(40) NOT NULL DEFAULT 'NOT NULL' COMMENT '密码',
   `sex` varchar(2) NOT NULL DEFAULT '0' COMMENT '性别',
-  `avator` varchar(100) NOT NULL DEFAULT 'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg' COMMENT '头像',
+  `avator` text NOT NULL DEFAULT 'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg' COMMENT '头像',
   `place` varchar(50) DEFAULT NULL COMMENT '来自哪里',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '在线状态,0离线,1在线',
   `socketid` varchar(20) NOT NULL DEFAULT '' COMMENT '登陆时的socketid',
