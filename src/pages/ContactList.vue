@@ -22,13 +22,18 @@
       <li
         v-for="item in userList"
         :key="item.id"
-         @click="enterChat(item.id)"
+        @click="enterChat(item.id)"
       >
-        <div class="head-pic">
-        </div>
+        <div
+          class="head-pic"
+          :style="{backgroundImage: `url(${item.avator})`}"
+        > </div>
         <div class="username">{{item.name}}</div>
       </li>
     </ul>
+    <div class="refresh">
+      {{pick}}
+    </div>
     <Footer :currentTab="currentTab"></Footer>
   </div>
 </template>
@@ -47,7 +52,8 @@ export default {
       currentTab: 3,
       friend: "hover",
       group: "",
-      userList: []
+      userList: [],
+      pick: 0
     }
   },
   created () {
@@ -55,6 +61,7 @@ export default {
     const user_info = JSON.parse(localStorage.getItem('userInfo'));
     axios.get(`api/v1/get_contact_list?user_id=${user_info.user_id}`).then(res => {
       _this.userList = res.data.data.userInfo;
+      _this.getUsersPic();
     }).catch(e => {
     })
   },
@@ -74,6 +81,16 @@ export default {
     enterChat (chatId) {
       this.$router.push(`/private_chat/${chatId}`)
     },
+    getUsersPic () {
+      const _this = this;
+      for (let i in _this.userList) {
+        axios.get('api/v1/user_info?user_id=' + this.userList[i].id).then(res => {
+          _this.userList[i].avator = res.data.data.userInfo[0].avator;
+          console.log( _this.userList[i].avator)
+          _this.pick++;
+        })
+      }
+    }
   },
 
   mounted () {
@@ -138,6 +155,9 @@ export default {
         width: 0.8rem;
         height: 0.8rem;
         background-color: #f0ecec;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
       }
       .username {
         margin-left: 0.2rem;
@@ -145,6 +165,9 @@ export default {
         align-self: center;
       }
     }
+  }
+  .refresh{
+    font-size: 0rem;
   }
 }
 </style>

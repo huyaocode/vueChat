@@ -15,7 +15,12 @@
         你还没有通过认证
       </h2>
       <div class="pic">
-        <div class="plus">
+        <form action="" enctype="multipart/form-data" method="post">
+          <input type="file" ref="chooseImg" name="image" multiple="multiple"/>
+          <br/>
+          <input type="submit" ref="submit"  value="upload">
+        </form>
+        <div class="plus" @click="chooseImg">
           +
         </div>
       </div>
@@ -40,6 +45,8 @@ export default {
       currentTab: 3,
     }
   },
+  mounted() {
+  },
   computed: {
     ...mapGetters([
       'newFriendGetter'
@@ -49,12 +56,16 @@ export default {
     Header
   },
   methods: {
+    chooseImg() {
+      const _this = this;
+      this.$refs.chooseImg.click(function() {
 
+      });
+    }
   },
   async created () {
     // this.myInfo = JSON.parse(localStorage.getItem("userInfo"));
     // console.log(this.myInfo.user_id ) 
-
   }
 }
 </script>
@@ -145,6 +156,9 @@ export default {
       background-color: #4290f7;
       color: #fff;
     }
+  }
+  form {
+    display: none;
   }
 }
 </style>

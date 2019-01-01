@@ -117,8 +117,11 @@
         class="de-friended"
         @click="deFriended"
       >删除好友</span>
+      <span
+        class="confession"
+        @click="confession"
+      >表白</span>
     </div>
-
     <div
       v-if="this.isMyFriend === true && this.isHisFriend === false "
       class="action"
@@ -356,33 +359,6 @@ export default {
       }
       //编辑个人信息
       if (value.messageBoxEvent === 'editorInfo') {
-        // //验证url
-        // var urlP = /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-        // var re = new RegExp(urlP);
-        // console.log('value.myInfo.website', value.myInfo.website)
-        // if (value.myInfo.website) {
-        //   if (!re.test(value.myInfo.website)) {
-        //     this.$message({
-        //       message: '请输入正确的网址',
-        //       type: "error"
-        //     });
-        //     return
-        //   } else {
-        //     value.myInfo.website = value.myInfo.website.substr(0, 4) != 'http' ? ('http://' + value.myInfo.website) : value.myInfo.website;
-        //   }
-        // }
-        // if (value.myInfo.github) {
-        //   if (!re.test(value.myInfo.github)) {
-        //     this.$message({
-        //       message: '请输入正确的网址',
-        //       type: "error"
-        //     });
-        //     return
-        //   } else {
-        //     value.myInfo.github = value.myInfo.github.substr(0, 4) != 'http' ? ('http://' + value.myInfo.github) : value.myInfo.github;
-        //   }
-        // }
-        // console.log(value.myInfo)
         axios.put('/api/v1/editor_info', {
           github: value.myInfo.github,
           website: value.myInfo.website,
@@ -393,7 +369,11 @@ export default {
           this.messageBox.visible = false;
         })
       }
-    }
+    },
+    confession() {
+      console.log('userInfo', this.userInfo)
+      this.$router.push(`/confession_to_other?to_user_id=${this.userInfo.user_id}`)
+    },
   },
   async created () {
     this.myInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -466,6 +446,9 @@ export default {
     .de-friended {
       background-color: #e16762;
       color: #fff;
+    }
+    .confession {
+       background-color: #fb7299;
     }
     .add-as-friend,
     .editor-info {

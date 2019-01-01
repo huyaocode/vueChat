@@ -9,7 +9,10 @@
       >
         <div class="users">
           <div class="user">
-            <div class="head-pic">
+            <div
+              class="head-pic"
+              :style="{backgroundImage: `url(${bb.user_avator})`}"
+            >
             </div>
             <div class="username">{{bb.user_name}}</div>
           </div>
@@ -23,7 +26,10 @@
           </div>
 
           <div class="user">
-            <div class="head-pic">
+            <div
+              class="head-pic"
+              :style="{backgroundImage: `url(${bb.to_user_avator})`}"
+            >
             </div>
             <div class="username">{{bb.to_user_name}}</div>
           </div>
@@ -33,6 +39,7 @@
         </div>
       </li>
     </ul>
+    <div class="refresh">{{pick}}</div>
     <Footer :currentTab="currentTab"></Footer>
   </div>
 </template>
@@ -52,6 +59,7 @@ export default {
   data () {
     return {
       currentTab: 2,
+      pick: 0,
       confessions: [
         {
           user_id: '爱动手',
@@ -61,21 +69,21 @@ export default {
           sueccess: 0,
           message: '锋特地发出了这一则声明。除了不愿意媒体们再造谣之外，这样的行为也是非常男人的，他提到了不要伤害小孩子，其实这里既包括了自己的两个儿子也包括了张柏芝的第三胎儿子。同时这也是谢霆锋从张柏芝生完三胎后以来的第一次发声。从另一方面来讲，谢霆锋的这次发声也是向王菲证明，自己现在爱的是王菲，与前妻没有任何瓜葛。'
         },
-       {
+        {
           user_id: '爱动手',
           user_name: '男生某',
           to_user_id: 'adsfdadadsf',
           to_user_name: '女生某',
           sueccess: 0,
           message: '锋特地发出了这一则声明。除了不愿意媒体们再造谣之外，这样的行为也是非常男人的，他提到了不要伤害小孩子，其实这里既包括了自己的两个儿子也包括了张柏芝的第三胎儿子。同时这也是谢霆锋从张柏芝生完三胎后以来的第一次发声。从另一方面来讲，谢霆锋的这次发声也是向王菲证明，自己现在爱的是王菲，与前妻没有任何瓜葛。'
-        },{
+        }, {
           user_id: '爱动手',
           user_name: '男生某',
           to_user_id: 'adsfdadadsf',
           to_user_name: '女生某',
           sueccess: 0,
           message: '锋特地发出了这一则声明。除了不愿意媒体们再造谣之外，这样的行为也是非常男人的，他提到了不要伤害小孩子，其实这里既包括了自己的两个儿子也包括了张柏芝的第三胎儿子。同时这也是谢霆锋从张柏芝生完三胎后以来的第一次发声。从另一方面来讲，谢霆锋的这次发声也是向王菲证明，自己现在爱的是王菲，与前妻没有任何瓜葛。'
-        },{
+        }, {
           user_id: '爱动手',
           user_name: '男生某',
           to_user_id: 'adsfdadadsf',
@@ -91,10 +99,20 @@ export default {
     Footer
   },
   methods: {
-    getUserInfos() {
-      for(let item in this.confessions) {
-        axios.get('/api/v1/user_info?user_id='+ item.user_id).then(res => {
-           this.confessions[item].res = res.data
+    getUserInfos () {
+      const _this = this;
+      for (let item in _this.confessions) {
+        axios.get('/api/v1/user_info?user_id=' + _this.confessions[item].user_id).then(res => {
+          const {avator, name} = res.data.data.userInfo[0];
+          _this.confessions[item].user_avator = avator;
+          _this.confessions[item].user_name = name;
+          _this.pick++;
+        })
+        axios.get('/api/v1/user_info?user_id=' + _this.confessions[item].to_user_id).then(res => {
+          const {avator, name} = res.data.data.userInfo[0];
+          _this.confessions[item].to_user_avator = avator;
+          _this.confessions[item].to_user_name = name;
+          _this.pick++;
         })
       }
     }
@@ -103,13 +121,12 @@ export default {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   },
   mounted () {
+    const _this = this;
     axios.get('/api/v1/get_all_confession').then(
       res => {
         console.log('表白', res.data.data)
-        const confessions = res.data.data;
-        confessions.user_name = '';
-        confessions.to_user_name = '';
-        getUserInfos();
+        _this.confessions = res.data.data;
+        _this.getUserInfos();
       }
     ).catch(err => {
 
@@ -135,7 +152,7 @@ export default {
       .users {
         display: flex;
         justify-content: center;
-       .icon {
+        .icon {
           font-size: 0.5rem;
           line-height: 180%;
           color: #fb7299;
@@ -151,6 +168,9 @@ export default {
             width: 0.8rem;
             height: 0.8rem;
             background-color: #f0ecec;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
           }
           .username {
             margin-left: 0.2rem;
@@ -165,6 +185,9 @@ export default {
         line-height: 0.4rem;
       }
     }
+  }
+  .refresh{
+    font-size: 0rem;
   }
 }
 </style>

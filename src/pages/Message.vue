@@ -39,7 +39,7 @@
             v-if="data.type === 'private'"
             class="title"
           >{{data.name}}<span>{{data.time}}</span></div>
-          <div class="message">{{data.message}}</div>
+          <div class="message">{{decodeURIComponent(data.message)}}</div>
         </div>
       </li>
     </ul>
