@@ -55,8 +55,25 @@ let get_all_confession = async function (ctx) {
   }
 }
 
+/**
+ * 获取某人告白信息
+ * @param {*} ctx
+ */
+let get_one_confession = async function (ctx) {
+  let {
+    user_id
+  } = ctx.query
+  let RowDataPacket = await confessionModel.check_confession(user_id)
+  let res = JSON.parse(JSON.stringify(RowDataPacket))
+  ctx.body = {
+    success: true,
+    data: res
+  }
+}
+
 module.exports = {
   confession_to_other,
   get_received_confession,
-  get_all_confession
+  get_all_confession,
+  get_one_confession
 }

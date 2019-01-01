@@ -33,6 +33,9 @@ let check_confession = function (user_id) {
   return query(_sql, user_id)
 }
 
+/**
+ * 获取所有告白
+ */
 let get_all_confession = function () {
   let _sql = 'select * from user_confession'
   return query(_sql)
