@@ -192,6 +192,7 @@ VALUES
 	(2,'索隆','b6d767d2f8ed5d21a44b0e5886680cb9',1,'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg','深圳',0,'l12EoQ8PbnmvupNQAAAP',NULL,'',NULL),
 	(3,'乔治','182be0c5cdcd5072bb1864cdee4d3d6e',1,'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg','杭州',0,'ue0dCyN0zAyJurW-AABQ',NULL,NULL,NULL),
 	(4,'罗','f7177163c833dff4b38fc8d2872f1ec6',1,'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg','',0,'67kamGg8ibMLEjpZAAAD',NULL,NULL,NULL),
+  (5,'wang','202cb962ac59075b964b07152d234b70',1,'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg','',0,'67kamGg8ibMLEjpZAAAD',NULL,NULL,NULL),
 	(14,'罗宾','b6d767d2f8ed5d21a44b0e5886680cb9',1,'http://www.wangyf.cn:5000/images/1546232453788-feeb419d6dbdd18f83a3eedd24a64ba3.jpeg',NULL,0,'9sictmm25dBk8tj2AAAC',NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
