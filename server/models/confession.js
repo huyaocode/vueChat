@@ -16,6 +16,16 @@ let confession_to_other = function (user_id, to_user_id, message) {
 }
 
 /**
+ * 确认表白
+ * @param {*} user_id
+ * @param {*} to_user_id
+ */
+let confirm_confession = function (user_id, to_user_id) {
+  let _sql = 'update set sueccess=1 where user_id=? and to_user_id=?'
+  return query(_sql, [user_id, to_user_id])
+}
+
+/**
  * 获取自己收到的表白
  * @param {*} user_id
  */
@@ -45,5 +55,6 @@ module.exports = {
   confession_to_other,
   get_received_confession,
   check_confession,
-  get_all_confession
+  get_all_confession,
+  confirm_confession
 }
