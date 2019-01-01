@@ -75,7 +75,7 @@ let get_one_confession = async function (ctx) {
  * 确认表白
  * @param {*} ctx
  */
-let confirm_confession = function(ctx) {
+let confirm_confession = async function(ctx) {
   let {user_id, to_user_id} = ctx.request.body
   await confessionModel.confirm_confession(user_id, to_user_id)
   ctx.body = {
