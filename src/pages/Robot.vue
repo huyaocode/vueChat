@@ -21,7 +21,8 @@
               class="icon"
               aria-hidden="true"
             >
-              <use xlink:href="#icon-Bowarrowright"></use>
+              <use v-show="bb.sueccess === 0" xlink:href="#icon-Bowarrowright"></use>
+              <use v-show="bb.sueccess === 1" xlink:href="#icon-heart1"></use>
             </svg>
           </div>
 
@@ -60,38 +61,7 @@ export default {
     return {
       currentTab: 2,
       pick: 0,
-      confessions: [
-        {
-          user_id: '爱动手',
-          user_name: '男生某',
-          to_user_id: 'adsfdadadsf',
-          to_user_name: '女生某',
-          sueccess: 0,
-          message: '锋特地发出了这一则声明。除了不愿意媒体们再造谣之外，这样的行为也是非常男人的，他提到了不要伤害小孩子，其实这里既包括了自己的两个儿子也包括了张柏芝的第三胎儿子。同时这也是谢霆锋从张柏芝生完三胎后以来的第一次发声。从另一方面来讲，谢霆锋的这次发声也是向王菲证明，自己现在爱的是王菲，与前妻没有任何瓜葛。'
-        },
-        {
-          user_id: '爱动手',
-          user_name: '男生某',
-          to_user_id: 'adsfdadadsf',
-          to_user_name: '女生某',
-          sueccess: 0,
-          message: '锋特地发出了这一则声明。除了不愿意媒体们再造谣之外，这样的行为也是非常男人的，他提到了不要伤害小孩子，其实这里既包括了自己的两个儿子也包括了张柏芝的第三胎儿子。同时这也是谢霆锋从张柏芝生完三胎后以来的第一次发声。从另一方面来讲，谢霆锋的这次发声也是向王菲证明，自己现在爱的是王菲，与前妻没有任何瓜葛。'
-        }, {
-          user_id: '爱动手',
-          user_name: '男生某',
-          to_user_id: 'adsfdadadsf',
-          to_user_name: '女生某',
-          sueccess: 0,
-          message: '锋特地发出了这一则声明。除了不愿意媒体们再造谣之外，这样的行为也是非常男人的，他提到了不要伤害小孩子，其实这里既包括了自己的两个儿子也包括了张柏芝的第三胎儿子。同时这也是谢霆锋从张柏芝生完三胎后以来的第一次发声。从另一方面来讲，谢霆锋的这次发声也是向王菲证明，自己现在爱的是王菲，与前妻没有任何瓜葛。'
-        }, {
-          user_id: '爱动手',
-          user_name: '男生某',
-          to_user_id: 'adsfdadadsf',
-          to_user_name: '女生某',
-          sueccess: 0,
-          message: '锋特地发出了这一则声明。除了不愿意媒体们再造谣之外，这样的行为也是非常男人的，他提到了不要伤害小孩子，其实这里既包括了自己的两个儿子也包括了张柏芝的第三胎儿子。同时这也是谢霆锋从张柏芝生完三胎后以来的第一次发声。从另一方面来讲，谢霆锋的这次发声也是向王菲证明，自己现在爱的是王菲，与前妻没有任何瓜葛。'
-        }
-      ]
+      confessions: [ ]
     }
   },
   components: {
@@ -124,7 +94,6 @@ export default {
     const _this = this;
     axios.get('/api/v1/get_all_confession').then(
       res => {
-        console.log('表白', res.data.data)
         _this.confessions = res.data.data;
         _this.getUserInfos();
       }

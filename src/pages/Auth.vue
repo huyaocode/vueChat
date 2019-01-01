@@ -12,19 +12,34 @@
     <div class="content">
 
       <h2>
-        你还没有通过认证
+        你{{hasPass ? '已经': '还没有'}}通过认证
       </h2>
       <div class="pic">
-        <form action="" enctype="multipart/form-data" method="post">
-          <input type="file" ref="chooseImg" name="image" multiple="multiple"/>
-          <br/>
-          <input type="submit" ref="submit"  value="upload">
+        <form
+          action="http://www.wangyf.cn:5000/upload_img"
+          enctype="multipart/form-data"
+          method="post"
+        >
+          <input
+            type="file"
+            ref="chooseImg"
+            name="image"
+            multiple="multiple"
+            @change="update"
+          />
+          <input
+            type="submit"
+            value="上传"
+          >
         </form>
-        <div class="plus" @click="chooseImg">
+        <div
+          class="plus"
+          @click="chooseImg"
+        >
           +
         </div>
       </div>
-      <p>请上传学生证或一卡通照片</p>
+      <p v-show="!hasPass">请上传学生证或一卡通照片</p>
     </div>
 
   </div>
@@ -40,12 +55,20 @@ export default {
   name: 'Auth',
   data () {
     return {
+      user_id: '',
       hasAuth: '',
-      hasPass: '',
+      hasPass: true,
       currentTab: 3,
     }
   },
-  mounted() {
+  mounted () {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      this.user_id = userInfo.user_id;
+    axios.get('api/v1/get_approve?user_id=' + this.user_id).then(res => {
+
+    }).catch(err => {
+
+    })
   },
   computed: {
     ...mapGetters([
@@ -56,16 +79,33 @@ export default {
     Header
   },
   methods: {
-    chooseImg() {
+    chooseImg () {
       const _this = this;
-      this.$refs.chooseImg.click(function() {
-
+      this.$refs.chooseImg.click(function () {
       });
+    },
+    update (e) {
+      const _this = this;
+      let file = e.target.files[0];
+      let param = new FormData(); //创建form对象
+      param.append('image', file);//通过append向form对象添加数据
+      fetch('http://www.wangyf.cn:5000/upload_img', {
+        body: param,
+        method: 'POST',
+      }).then(res => {
+        return res.json()
+      }).then(res => {
+        _this.saveApprove(res.imageUrl)
+      })
+    },
+    saveApprove(url) {
+      const userId = this.user_id;
+      url = 'http://www.wangyf.cn:5000/'+ url;
+      axios.post('api/v1/save_approve',{
+        imgUrl: url,
+        user_id: userId
+      })
     }
-  },
-  async created () {
-    // this.myInfo = JSON.parse(localStorage.getItem("userInfo"));
-    // console.log(this.myInfo.user_id ) 
   }
 }
 </script>

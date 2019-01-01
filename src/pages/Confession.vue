@@ -13,7 +13,10 @@
       >
         <div class="users">
           <div class="user">
-            <div class="head-pic">
+            <div
+              class="head-pic"
+              :style="{backgroundImage: `url(${bb.user_avator})`}"
+            >
             </div>
             <div class="username">{{bb.user_name}}</div>
           </div>
@@ -22,12 +25,57 @@
               class="icon"
               aria-hidden="true"
             >
-              <use xlink:href="#icon-Bowarrowright"></use>
+              <use v-show="bb.sueccess === 0" xlink:href="#icon-Bowarrowright"></use>
+              <use v-show="bb.sueccess === 1" xlink:href="#icon-heart1"></use>
             </svg>
           </div>
 
           <div class="user">
-            <div class="head-pic">
+            <div
+              class="head-pic"
+              :style="{backgroundImage: `url(${bb.to_user_avator})`}"
+            >
+            </div>
+            <div class="username">{{bb.to_user_name}}</div>
+          </div>
+        </div>
+        <div class="content">
+          {{bb.message}}
+        </div>
+        <div v-show="bb.success == 0" class="confirm" @click="()=>confirmConfession(bb.user_id, bb.to_user_id)">好, 在一起</div>
+      </li>
+    </ul>
+
+    <h2>我发出的表白</h2>
+    <ul>
+      <li
+        v-for="(bb, index) in myConfessions"
+        :key="index"
+      >
+        <div class="users">
+          <div class="user">
+            <div
+              class="head-pic"
+              :style="{backgroundImage: `url(${bb.user_avator})`}"
+            >
+            </div>
+            <div class="username">{{bb.user_name}}</div>
+          </div>
+          <div class="icon">
+            <svg
+              class="icon"
+              aria-hidden="true"
+            >
+              <use v-show="bb.sueccess === 0" xlink:href="#icon-Bowarrowright"></use>
+              <use v-show="bb.sueccess === 1" xlink:href="#icon-heart1"></use>
+            </svg>
+          </div>
+
+          <div class="user">
+            <div
+              class="head-pic"
+              :style="{backgroundImage: `url(${bb.to_user_avator})`}"
+            >
             </div>
             <div class="username">{{bb.to_user_name}}</div>
           </div>
@@ -37,37 +85,7 @@
         </div>
       </li>
     </ul>
-
-    <h2>我发出的表白</h2>
-    <ul>
-      <li>
-        <div class="users">
-          <div class="user">
-            <div class="head-pic">
-            </div>
-            <div class="username">{{myConfessions.user_name}}</div>
-          </div>
-          <div class="icon">
-            <svg
-              class="icon"
-              aria-hidden="true"
-            >
-              <use v-show="myConfessions.sueccess === 0" xlink:href="#icon-Bowarrowright"></use>
-              <use v-show="myConfessions.sueccess === 1" xlink:href="#icon-heart1"></use>
-            </svg>
-          </div>
-
-          <div class="user">
-            <div class="head-pic">
-            </div>
-            <div class="username">{{myConfessions.to_user_name}}</div>
-          </div>
-        </div>
-        <div class="content">
-          {{myConfessions.message}}
-        </div>
-      </li>
-    </ul>
+    <div class="refresh">{{pick}}</div>
   </div>
 </template>
 
@@ -84,61 +102,64 @@ export default {
   name: 'Robot',
   data () {
     return {
-      confessions: [
-        {
-          user_id: '爱动手',
-          user_name: '一个同学',
-          to_user_id: 'adsfdadadsf',
-          to_user_name: '本用户',
-          sueccess: 0,
-          message: '这又是什么套路？表白之前还要倒数321？你不说你喜欢他我还以为接下来要开始唱歌了呢“爱就像蓝天白云，晴空万里，突然暴风雨~”多好听啊是吧。明明是小学生一个一个成熟的跟啥似的'
-        },
-        {
-          user_id: '爱动手',
-          user_name: '一个同学',
-          to_user_id: 'adsfdadadsf',
-          to_user_name: '本用户',
-          sueccess: 0,
-          message: '这又是什么套路？表白之前还要倒数321？你不说你喜欢他我还以为接下来要开始唱歌了呢“爱就像蓝天白云，晴空万里，突然暴风雨~”多好听啊是吧。明明是小学生一个一个成熟的跟啥似的'
-        }
-      ],
-      myConfessions: {
-        user_id: '爱动手',
-        user_name: '本用户',
-        to_user_id: 'adsfdadadsf',
-        to_user_name: '其他同学',
-        sueccess: 1,
-        message: '“你今天有点儿怪。”“哪怪了？”“怪可爱的。”不是我说，是不是有点儿牵强突兀？但是不知道为啥很多人都说觉得超级撩人，难道我真的老了，欣赏不了年轻人的梗了吗？'
-      }
+      user_id: '',
+      pick: 0,
+      confessions: [],
+      myConfessions: [],
     }
   },
   components: {
     Header
   },
   methods: {
-    getUserInfos () {
-      for (let item in this.confessions) {
-        axios.get('/api/v1/user_info?user_id=' + item.user_id).then(res => {
-          this.confessions[item].res = res.data
+    getUserInfos (confessions) {
+      const _this = this;
+      for (let item in confessions) {
+        axios.get('/api/v1/user_info?user_id=' + confessions[item].user_id).then(res => {
+          const {avator, name} = res.data.data.userInfo[0];
+          confessions[item].user_avator = avator;
+          confessions[item].user_name = name;
+          _this.pick++;
+        })
+        axios.get('/api/v1/user_info?user_id=' + confessions[item].to_user_id).then(res => {
+          const {avator, name} = res.data.data.userInfo[0];
+          confessions[item].to_user_avator = avator;
+          confessions[item].to_user_name = name;
+          _this.pick++;
         })
       }
+    },
+    get_received_confession() {
+      const _this = this;
+      axios.get('api/v1/get_received_confession?user_id=' + _this.user_id).then(res => {
+        _this.confessions = res.data.data;
+        _this.getUserInfos(_this.confessions);
+      })
+    },
+    get_one_confession() {
+      const _this = this;
+      axios.get('api/v1/get_one_confession?user_id=' + _this.user_id).then(res => {
+         _this.myConfessions = res.data.data;
+        _this.getUserInfos(_this.myConfessions);
+      })
+    },
+    confirmConfession(user_id, to_user_id) {
+      console.log(user_id, to_user_id);
+      const _this = this;
+      axios.post('api/v1/confirm_confession', {user_id, to_user_id}).then(res => {
+        _this.get_received_confession();
+      })
     }
   },
   created () {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   },
   mounted () {
-    axios.get('/api/v1/get_all_confession').then(
-      res => {
-        console.log('表白', res.data.data)
-        const confessions = res.data.data;
-        confessions.user_name = '';
-        confessions.to_user_name = '';
-        getUserInfos();
-      }
-    ).catch(err => {
-
-    })
+    this.to_user_id = this.$router.history.current.query.to_user_id;
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    this.user_id = userInfo.user_id;
+    this.get_received_confession();
+    this.get_one_confession();
   },
 }
 </script>
@@ -182,6 +203,9 @@ export default {
             width: 0.8rem;
             height: 0.8rem;
             background-color: #f0ecec;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
           }
           .username {
             margin-left: 0.2rem;
@@ -195,7 +219,19 @@ export default {
         font-size: 0.29rem;
         line-height: 0.4rem;
       }
+      .confirm {
+        text-align: right;
+        background: #fb7299;
+        float: right;
+        padding: 0.15rem 0.1rem;
+        border-radius: 0.2rem;
+        color: #fff;
+        margin-top: 0.1rem;
+      }
     }
+  }
+  .refresh{
+    font-size: 0rem;
   }
 }
 </style>
