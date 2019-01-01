@@ -96,7 +96,7 @@ export default {
       const _this = this;
       const { user_id, to_user_id, message } = _this;
       axios.post('api/v1/confession_to_other', {
-        user_id, to_user_id, message
+        user_id, to_user_id: parseInt(to_user_id), message
       }).then(res => {
         let cb = res.data;
         if (!cb.success) {
