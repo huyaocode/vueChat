@@ -21,7 +21,7 @@ let confession_to_other = function (user_id, to_user_id, message) {
  * @param {*} to_user_id
  */
 let confirm_confession = function (user_id, to_user_id) {
-  let _sql = 'update set sueccess=1 from user_confession where user_id=? and to_user_id=?'
+  let _sql = 'update user_confession set sueccess=1   where user_id=? and to_user_id=?'
   return query(_sql, [user_id, to_user_id])
 }
 
