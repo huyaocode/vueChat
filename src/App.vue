@@ -60,7 +60,6 @@ export default {
 		// 获取新好友通知
 		getReqBySocket() {
 			socket.on('getresponse', (data) => {
-				console.log('获取新好友通知', data);
 				// 存vuex
 				this.$store.commit('newFriendMutation', data)
 				this.$store.commit('friendReqTipsMutation',true);
@@ -85,7 +84,6 @@ export default {
 		//初始化屏幕比例
 		function screenRatio(baseFontSize, fontscale) {
 			var ratio = sreenRatio();
-			console.log(ratio)
 			var scale = document.createElement('meta');
 			var scaleRatio = 1 /ratio;
 			scale.name = 'viewport';

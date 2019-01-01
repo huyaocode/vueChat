@@ -10,7 +10,15 @@ module.exports = {
 		// Paths
 		assetsSubDirectory: 'static',
 		assetsPublicPath: '/',
-		proxyTable: {},
+		proxyTable: {
+			'/upload_img': {
+				target: 'http://www.wangyf.cn:5000',
+				changeOrigin: true,
+				pathRewrite: {
+					'^/upload_img': ''
+				}
+			}
+		},
 
 		// Various Dev Server settings
 		host: 'localhost', // can be overwritten by process.env.HOST

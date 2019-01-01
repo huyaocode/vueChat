@@ -26,7 +26,7 @@
             class="agree-btn"
             @click="agreeBeFriend(data.from_user)"
           >同意</span>
-          <span v-if="data.status === 1">已通过验证</span>
+          <span v-if="data.status === 1">已通过</span>
         </div>
       </li>
     </ul>
