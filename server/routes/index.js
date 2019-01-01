@@ -54,6 +54,7 @@ router.post('/register', register) //注册
   .get('/get_received_confession', verify, confession.get_received_confession) // 获取已收到表白
   .get('/get_all_confession', verify, confession.get_all_confession) // 获取所有告白
   .get('/get_one_confession', verify, confession.get_one_confession) // 获取某user的告白
+  .post('/confirm_confession', verify, confession.confirm_confession) // 确认表白
   .post('/save_avater', verify, image.saveAvater) // 存头像
   .post('/save_approve', verify, image.saveApprove) // 存认证图片
   .get('/get_approve', verify, image.getApprove) // 根据id获取认证信息
