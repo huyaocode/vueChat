@@ -23,7 +23,7 @@ let getPrivateList = function (user_id) {
 
 // 撤销消息
 let undoMessage = function (from_user_id, to_user_id, time) {
-  let _sql = 'delete from private_msg where from_user = ? and to_user = ? and time = ?'
+  let _sql = 'delete from private__msg where from_user = ? and to_user = ? and time = ?'
   return query(_sql, [from_user_id, to_user_id, time])
 }
 
