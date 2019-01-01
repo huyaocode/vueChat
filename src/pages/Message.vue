@@ -7,6 +7,7 @@
         v-for="(data, index) in msgListGetter"
         @click="enterChat(data.type,data.id)"
         :key="index"
+        v-if="data.message"
       >
         <a
           v-if="data.type === 'group'"

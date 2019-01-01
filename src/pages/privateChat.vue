@@ -19,6 +19,10 @@
           :msg="decodeMsg(item.message)"
           :name="item.name"
           :time="item.time"
+          :originTime="item.originTime"
+          :from_user="item.from_user"
+          :to_user="item.to_user"
+          @remove="getPrivateMsg"
         ></ChatItem>
         <ChatItem
           v-else
@@ -27,6 +31,8 @@
           :href=" item.from_user "
           :name="item.name"
           :time="item.time"
+          :from_user=false
+          :to_user=false
         ></ChatItem>
       </li>
     </ul>
@@ -74,7 +80,6 @@ export default {
     Header,
     ChatItem
   },
-
   data () {
     return {
       inputMsg: '',
@@ -132,16 +137,15 @@ export default {
           }
         })
         .then(res => {
-          console.log('res222', res)
           if (res.data.success) {
             this.privateDetail = res.data.data.privateDetail;
             if (this.privateDetail.length == 0) return
             this.privateDetail.forEach(element => {
+              element.originTime = element.time
               element.time = toNomalTime(element.time);
               element.message = element.message.split(':')[1];
             });
           }
-
         })
         .catch(err => {
           const errorMsg = err.response.data.error
@@ -175,6 +179,7 @@ export default {
     },
     //用socket发消息
     sendMsgBySocket () {
+      let time = Date.parse(new Date())
       const data = {
         from_user: this.fromUserInfo.user_id, //自己的id
         to_user: this.toUserInfo.to_user, //对方id
@@ -183,7 +188,7 @@ export default {
         message: this.inputMsg, //消息内容
         type: 'private',
         status: '1', //是否在线 0为不在线 1为在线
-        time: Date.parse(new Date()) / 1000 //时间
+        time: time / 1000 //时间
       };
       socket.emit('sendPrivateMsg', data)
       this.$store.commit('updateListMutation', data);
@@ -191,6 +196,7 @@ export default {
     //用数据库存消息
     saveMsgByDB () {
       let msg = encodeURIComponent(this.inputMsg);
+      let time = Date.parse(new Date())
       const data = {
         from_user: this.fromUserInfo.user_id, //自己的id
         to_user: this.toUserInfo.to_user, //对方的id
@@ -198,7 +204,8 @@ export default {
         avator: this.fromUserInfo.avator, //自己的头像
         message: msg, //消息内容
         status: '1', //是否在线 0为不在线 1为在线
-        time: Date.parse(new Date()) / 1000 //时间
+        time: time / 1000, //时间,
+        originTime: time / 1000
       }
       // 存此条私聊信息到数据库
       axios.post('/api/v1/private_save_msg', data)
@@ -206,7 +213,6 @@ export default {
           this.inputMsg = '';
           // 存此条私聊信息到本地
           data.time = toNomalTime(data.time)
-          console.log('saveMsgByDBdata', data)
           this.privateDetail.push(data);
         })
     },
@@ -214,7 +220,6 @@ export default {
     getMsgBySocket () {
       socket.removeAllListeners('getPrivateMsg');
       socket.on('getPrivateMsg', (data) => {
-        console.log('聊天内获取私聊消息', data);
         //如果收到的soket信息不是发给自己的 放弃这条soket 没必要了 因为私聊是点对点发送的
         // if(data.to_user != this.fromUserInfo.user_id) return
         //如果收到的soket信息不是来自当前聊天者 写入首页信息列表 并return
@@ -222,7 +227,6 @@ export default {
         // console.log(data.from_user, '!=', this.toUserInfo.to_user)
         // 	//soket信息不是来自当前聊天者 vuex添加此条信息 有未读提示
         if (data.from_user != this.toUserInfo.to_user) {
-          console.log(data, "updateListMutationdata")
           data.chatOfNow = false;
           this.$store.commit('updateListMutation', data)
           return

@@ -42,6 +42,7 @@
         <div class="content">
           {{bb.message}}
         </div>
+        <div v-show="bb.success == 0" class="confirm" @click="()=>confirmConfession(bb.user_id, bb.to_user_id)">好, 在一起</div>
       </li>
     </ul>
 
@@ -141,6 +142,13 @@ export default {
          _this.myConfessions = res.data.data;
         _this.getUserInfos(_this.myConfessions);
       })
+    },
+    confirmConfession(user_id, to_user_id) {
+      console.log(user_id, to_user_id);
+      const _this = this;
+      axios.post('api/v1/confirm_confession', {user_id, to_user_id}).then(res => {
+        _this.get_received_confession();
+      })
     }
   },
   created () {
@@ -210,6 +218,15 @@ export default {
         letter-spacing: 1px;
         font-size: 0.29rem;
         line-height: 0.4rem;
+      }
+      .confirm {
+        text-align: right;
+        background: #fb7299;
+        float: right;
+        padding: 0.15rem 0.1rem;
+        border-radius: 0.2rem;
+        color: #fff;
+        margin-top: 0.1rem;
       }
     }
   }

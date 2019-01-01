@@ -21,7 +21,8 @@
               class="icon"
               aria-hidden="true"
             >
-              <use xlink:href="#icon-Bowarrowright"></use>
+              <use v-show="bb.sueccess === 0" xlink:href="#icon-Bowarrowright"></use>
+              <use v-show="bb.sueccess === 1" xlink:href="#icon-heart1"></use>
             </svg>
           </div>
 
