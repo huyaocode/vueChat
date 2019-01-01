@@ -13,7 +13,7 @@ let confession_to_other = async function (ctx) {
   message = message || ' '
   let RowDataPacket = await confessionModel.check_confession(user_id)
   let res = JSON.parse(JSON.stringify(RowDataPacket))
-  if (res || res.length > 0) {
+  if (res.length > 0) {
     ctx.body = {
       success: false,
       message: '你已经告白过了'
