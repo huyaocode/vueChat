@@ -27,6 +27,23 @@
     >
       <p slot="content">{{this.messageBox.message}}</p>
     </Message-box>
+    <form
+      action="http://www.wangyf.cn:5000/upload_img"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <input
+        type="file"
+        ref="chooseImg"
+        name="image"
+        multiple="multiple"
+        @change="update"
+      />
+      <input
+        type="submit"
+        value="上传"
+      >
+    </form>
     <Header
       goback='true'
       chatTitle="用户资料"
@@ -36,6 +53,7 @@
       <img
         :src="userInfo.avator"
         alt=""
+        @click="chooseImg"
       >
       <p v-if="this.isMyFriend">
         <svg
@@ -162,6 +180,7 @@
         @click="editorInfo"
       >编辑我的信息</span>
     </div>
+    {{pick}}
   </div>
 </template>
 
@@ -181,6 +200,7 @@ export default {
       isHisFriend: false, //我是否是他的好友
       isAddingMe: false,
       isMe: false,
+      pick: 0,
       messageBox: {
         visible: false, //弹窗是否显示
         title: "提示", //弹窗名称
@@ -201,6 +221,46 @@ export default {
     Header
   },
   methods: {
+    //修改头像
+    chooseImg () {
+      const _this = this;
+      this.$refs.chooseImg.click(function () {
+      });
+    },
+    //上传
+    update (e) {
+      const _this = this;
+      let file = e.target.files[0];
+      let param = new FormData(); //创建form对象
+      param.append('image', file);//通过append向form对象添加数据
+      fetch('http://www.wangyf.cn:5000/upload_img', {
+        body: param,
+        method: 'POST',
+      }).then(res => {
+        return res.json()
+      }).then(res => {
+        _this.saveNewAvator(res.imageUrl)
+      }).catch(err => {
+        console.lor('Error', err)
+      })
+    },
+    saveNewAvator(url) {
+      const userId = this.userInfo.user_id;
+      console.log(userId)
+      url = 'http://www.wangyf.cn:5000/' + url;
+      const _this = this;
+      axios.post('api/v1/save_avater', {
+        imgUrl: url,
+        user_id: userId
+      }).then(res => {
+        _this.imgUrl = url;
+        _this.userInfo.avator = url;
+        _this.pick++;
+        localStorage.setItem("userInfo", JSON.stringify(_this.userInfo));
+      }).catch(err => {
+        console.error('saveApprove', err)
+      })
+    },
     //获取用户资料
     getInfo () {
       //如果是自己，那就用本地的个人信息即可，省一次请求
@@ -370,7 +430,7 @@ export default {
         })
       }
     },
-    confession() {
+    confession () {
       console.log('userInfo', this.userInfo)
       this.$router.push(`/confession_to_other?to_user_id=${this.userInfo.user_id}`)
     },
@@ -448,13 +508,16 @@ export default {
       color: #fff;
     }
     .confession {
-       background-color: #fb7299;
+      background-color: #fb7299;
     }
     .add-as-friend,
     .editor-info {
       background-color: #4290f7;
       color: #fff;
     }
+  }
+  form {
+    display: none;
   }
 }
 </style>
