@@ -10,31 +10,31 @@
       chatTitle="身份认证"
     ></Header>
     <div class="content">
-
+      <form
+        action="http://www.wangyf.cn:5000/upload_img"
+        enctype="multipart/form-data"
+        method="post"
+      >
+        <input
+          type="file"
+          ref="chooseImg"
+          name="image"
+          multiple="multiple"
+          @change="update"
+        />
+        <input
+          type="submit"
+          value="上传"
+        >
+      </form>
       <h2>
         你{{hasPass ? '已经': '还没有'}}通过认证
       </h2>
-      <div class="pic">
-        <form
-          action="http://www.wangyf.cn:5000/upload_img"
-          enctype="multipart/form-data"
-          method="post"
-        >
-          <input
-            type="file"
-            ref="chooseImg"
-            name="image"
-            multiple="multiple"
-            @change="update"
-          />
-          <input
-            type="submit"
-            value="上传"
-          >
-        </form>
+      <div class="pic" :style="{backgroundImage: `url(${imgUrl})`}">
         <div
           class="plus"
           @click="chooseImg"
+          v-if="imgUrl== ''"
         >
           +
         </div>
@@ -57,17 +57,20 @@ export default {
     return {
       user_id: '',
       hasAuth: '',
-      hasPass: true,
+      imgUrl: '',
+      hasPass: false,
       currentTab: 3,
     }
   },
   mounted () {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-      this.user_id = userInfo.user_id;
+    this.user_id = userInfo.user_id;
+    const _this = this;
     axios.get('api/v1/get_approve?user_id=' + this.user_id).then(res => {
-
+      _this.hasPass = res.data.data.length === 0 ? false : true
+      _this.imgUrl = res.data.data[0].image
     }).catch(err => {
-
+      console.log('err')
     })
   },
   computed: {
@@ -96,14 +99,22 @@ export default {
         return res.json()
       }).then(res => {
         _this.saveApprove(res.imageUrl)
+      }).catch(err => {
+        console.lor('Error', err)
       })
     },
-    saveApprove(url) {
+    saveApprove (url) {
       const userId = this.user_id;
-      url = 'http://www.wangyf.cn:5000/'+ url;
-      axios.post('api/v1/save_approve',{
+      url = 'http://www.wangyf.cn:5000/' + url;
+      const _this = this;
+      axios.post('api/v1/save_approve', {
         imgUrl: url,
         user_id: userId
+      }).then(res => {
+        _this.imgUrl = url;
+        console.log('保存成功', res.data)
+      }).catch(err => {
+        console.error('saveApprove', err)
       })
     }
   }
@@ -136,6 +147,9 @@ export default {
       height: 3rem;
       background: #fff;
       position: relative;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
       .plus {
         height: 1.5rem;
         position: absolute;
