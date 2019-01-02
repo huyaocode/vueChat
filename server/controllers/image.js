@@ -57,9 +57,24 @@ const getAllApprove = async function (ctx, next) {
   }
 }
 
+/**
+ * 认证成功
+ * @param {*} ctx
+ */
+const approveOK = async function (ctx) {
+  console.log(ctx.request.body)
+  let user_id = ctx.request.body.user_id
+  await imageModel.approveOK(user_id)
+  ctx.body = {
+    success: true,
+    message: "认证成功"
+  }
+}
+
 module.exports = {
   saveAvater,
   saveApprove,
   getApprove,
-  getAllApprove
+  getAllApprove,
+  approveOK
 }

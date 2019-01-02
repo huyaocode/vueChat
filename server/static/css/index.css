@@ -1,0 +1,173 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+*{
+  margin: 0;
+  padding: 0;
+}
+body {
+  padding-top: 70px;
+  font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
+  font-size: 15px;
+  background-color: rgba(26,26,26,.01);
+}
+/* NAV BAR
+-------------------------------------------------- */
+.navbar-header h1{
+  line-height: 50px;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+}
+.navbar-header button{
+  border: 1px solid #eee;
+}
+.navbar-header button span{
+  border: 1px solid #eee;
+}
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+nav.navbar {
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(26,26,26,.1);
+}
+
+/* 表白状态
+-------------------------------------------------- */
+.express {
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  width: 100px;
+  padding: 0 5px;
+  text-align: center;
+  color: #fff;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  margin: 0 -65px 0 0;
+}
+.express.success{
+  background-color: #FB7299;
+}
+.express.failed{
+  background-color: #006633;
+}
+.express.waiting{
+  background-color: #ddd;
+  color: #666;
+}
+
+.users .table>tbody>tr>td {
+  padding: 15px;
+}
+.users .table>tbody>tr>td:last-child {
+  padding: 8px;
+}
+.users{
+  display: none;
+}
+.dongtai{
+  display: none;
+}
+/*
+说说
+*******************************************/
+.articles>ul>li {
+  list-style: none;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(26,26,26,.1);
+  background-color: #fff;
+}
+.articles .head{
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+}
+.articles .head>div{
+  float: left;
+}
+.articles .headImg{
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+.articles .headImg img{
+  width: 50px;
+  height: 50px;
+}
+.articles .head .desc{
+  margin-top: 6px;
+  font-size: 10px;
+}
+.articles .head .desc h4{
+  font-weight: 400;
+  font-size: 20px;
+  display: inline;
+}
+.articles .article>a{
+  font-weight: 600;
+  color: #000;
+  font-size: 22px;
+  text-decoration:none; 
+}
+.articles .article .content div{
+  float: left;
+  margin-top: 12px;
+  cursor: pointer;
+}
+.articles .article .cover{
+  width: 190px;
+  height: 105px;
+  margin: 5px 20px 6px 0 ;
+}
+.articles .article .cover img{
+  width: 190px;
+  height: 105px;
+  border-radius: 6px;
+}
+.articles .article .abbreviate{
+  width: calc(100% - 220px);
+  height: 95px;
+  font-size: 16px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+.articles .article .abbreviate p{
+  margin-top: 8px;
+}
+.articles .article .abbreviate span{
+  color: #175199;
+}
+.articles .options{
+  clear: both;
+}
+.articles .options > span{
+  line-height: 35px;
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.articles .options .btn{
+  background-color: rgba(0, 132, 255, 0.1);
+  color: rgb(0, 132, 255);
+  outline: none;
+}
+.articles .options .more{
+  background: #fff;
+  color: #666;
+  border: none;
+  box-shadow: none;
+}
+
+.section {
+  position: relative;
+}
+
+.section::before {
+  content: "x";
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  font-size: 17px;
+}

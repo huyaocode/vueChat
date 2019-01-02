@@ -39,9 +39,19 @@ const getAllApprove = function () {
   return query(_sql)
 }
 
+/**
+ * 认证成功
+ * @param {*} user_id
+ */
+const approveOK = function (user_id) {
+  const _sql = 'update approve set success=1 where user_id=?'
+  return query(_sql, user_id)
+}
+
 module.exports = {
   saveAvater,
   saveApprove,
   getApprove,
-  getAllApprove
+  getAllApprove,
+  approveOK
 }

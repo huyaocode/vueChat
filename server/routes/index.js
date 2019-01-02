@@ -59,6 +59,7 @@ router.post('/register', register) //注册
   .post('/save_approve', verify, image.saveApprove) // 存认证图片
   .get('/get_approve', verify, image.getApprove) // 根据id获取认证信息
   .get('/get_all_approve', verify, image.getAllApprove) // 获取所有认证信息
+  .post('/approve_ok', verify, image.approveOK) // 认证成功
   .post('/undo_message', verify, message.undoMessage) // 撤回消息
 
 module.exports = router

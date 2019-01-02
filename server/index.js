@@ -8,6 +8,15 @@ const {
 } = require("./utils/db");
 const socketModel = require("./models/soketHander");
 const app = new Koa();
+const mount = require('koa-mount')
+const static = require('koa-static')
+const path = require('path')
+
+/* ===========  静态文件处理 start  ======================== */
+const public = new Koa()
+public.use(static(path.join(__dirname, 'static')))
+app.use(mount('/static', public))
+/* ===========  静态文件处理 end  ======================== */
 
 // const server = require('http').Server(app.callback());
 // const io = require('socket.io')(server);
@@ -16,6 +25,7 @@ const io = require("socket.io")(server);
 // io.on('connection', function(){ /* … */ });
 server.listen(3000);
 
+/* ===========  跨域处理 start  ======================== */
 app.use(cors({
   origin: (ctx) => {
     return '*'
@@ -33,6 +43,7 @@ app.use(async (ctx, next) => {
   ctx.set('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE');
   await next()
 })
+/* ===========  跨域处理 end  ======================== */
 
 app.use(bodyParser());
 
@@ -40,6 +51,7 @@ app.use(router.routes()).use(router.allowedMethods());
 
 global.query = query;
 
+/* ===========  聊天相关 start  ======================== */
 io.on("connection", socket => {
   const socketId = socket.id;
   //登录
@@ -76,7 +88,7 @@ io.on("connection", socket => {
     console.log("disconnect", data);
   });
 });
-
+/* ===========  聊天相关 end  ======================== */
 // app.listen(3000);
 console.log("服务器已启动,端口3000");
 

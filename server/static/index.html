@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>西科陌陌</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+
+<body>
+
+    <body>
+
+        <!-- 响应式导航条
+                ================================================================================= -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                        aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h1 id="name" class="navbar-brand" href="#">西科陌陌</h1>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- <li class="active menu" data-id=".statistics">
+                            <a href="#">脱单统计</a>
+                        </li> -->
+                        <li id="auth" class="active menu" data-id=".users">
+                            <a href="#"  >认证管理</a>
+                        </li>
+                        <!-- <li class="menu" data-id=".dongtai">
+                            <a href="#"  >动态管理</a>
+                        </li>
+                        <li class="menu" data-id=".bbmodel">
+                            <a href="#"  >表白模板</a>
+                        </li> -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                我
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">我的信息</a>
+                                </li>
+                                <li>
+                                    <a href="#">退出</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container">
+            <!-- 脱单统计 -->
+            <!-- <div class="statistics  table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>时间</th>
+                            <th>表白发起人</th>
+                            <th>表白接收者</th>
+                            <th>表白状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>Lorem</td>
+                            <td>ipsum</td>
+                            <td>
+                                <span class="express success">
+                                    表白成功
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>amet</td>
+                            <td>consectetur</td>
+                            <td>
+                                <span class="express failed">
+                                    表白失败
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>Integer</td>
+                            <td>nec</td>
+                            <td>
+                                <span class="express waiting">
+                                    等待结果
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>Lorem</td>
+                            <td>ipsum</td>
+                            <td>
+                                <span class="express success">
+                                    表白成功
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>Lorem</td>
+                            <td>ipsum</td>
+                            <td>
+                                <span class="express success">
+                                    表白成功
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>amet</td>
+                            <td>consectetur</td>
+                            <td>
+                                <span class="express failed">
+                                    表白失败
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>Integer</td>
+                            <td>nec</td>
+                            <td>
+                                <span class="express waiting">
+                                    等待结果
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>amet</td>
+                            <td>consectetur</td>
+                            <td>
+                                <span class="express failed">
+                                    表白失败
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>Lorem</td>
+                            <td>ipsum</td>
+                            <td>
+                                <span class="express success">
+                                    表白成功
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>amet</td>
+                            <td>consectetur</td>
+                            <td>
+                                <span class="express failed">
+                                    表白失败
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>2018.8.16 22:36</td>
+                            <td>Integer</td>
+                            <td>nec</td>
+                            <td>
+                                <span class="express waiting">
+                                    等待结果
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary">查看</button>
+                                <button type="button" class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> -->
+            <!-- 用户管理 -->
+            <div class="users  table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>昵称</th>
+                            <th>头像</th>
+                            <th>性别</th>
+                            <th>认证图片</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="auth-table-body">
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- 动态管理 -->
+            <!-- <div class="dongtai articles">
+                <ul>
+                    <li class="section">
+                        <div class="head">
+                            <div class="headImg">
+                                <img src="https://pic1.zhimg.com/v2-723d612640fa05e9880cec66d3a91a67_im.jpg" alt="" srcset="">
+                            </div>
+                            <div class="desc">
+                                <div>
+                                    <h4>胡明明 </h4>
+                                    <span>计算机学院，16级</span>
+                                </div>
+                                <span>7月3日 22:33</span>
+                            </div>
+                        </div>
+                        <div class="article">
+                            <a href="#">高效能的一天</a>
+                            <div class="content">
+                                <div class="cover">
+                                    <img src="https://pic1.zhimg.com/50/v2-299b6a792e04802be11785e0bed013c0_400x224.jpg" alt="">
+                                </div>
+                                <div class="abbreviate">
+                                    <p>我问为什么 那女孩传简讯给我 而你为什么 不解释低着头沉默 我该相信你很爱我 不愿意敷衍我 还是明白 你已不想挽回什么 想问为什么 我不再是你的快乐 可是为什么 却苦笑说我都懂了
+                                        自尊常常将人拖着 把爱都走曲折 假装了解是怕 真相太赤裸裸 狼狈比失去难受 我怀念的 是无话不说 我怀念的 是一起作梦 我怀念的 是争吵以后 还是想要爱你的冲动
+                                        <span>
+                                            阅读全文
+                                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="options">
+                            <span>
+                                <button type="button" class="btn">
+                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                                    点赞
+                                </button>
+                            </span>
+                            <span class="view">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                674次浏览
+                            </span>
+                            <span class="comment">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                123条评论
+                            </span>
+                            <span class="star">
+                                <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                                分享
+                            </span>
+                            <span class="star">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                收藏
+                            </span>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn more dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">不感兴趣</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">举报</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="section">
+                        <div class="head">
+                            <div class="headImg">
+                                <img src="https://pic1.zhimg.com/v2-723d612640fa05e9880cec66d3a91a67_im.jpg" alt="" srcset="">
+                            </div>
+                            <div class="desc">
+                                <div>
+                                    <h4>胡明明 </h4>
+                                    <span>计算机学院，16级</span>
+                                </div>
+                                <span>7月3日 22:33</span>
+                            </div>
+                        </div>
+                        <div class="article">
+                            <a href="#">高效能的一天</a>
+                            <div class="content">
+                                <div class="cover">
+                                    <img src="https://pic1.zhimg.com/50/v2-299b6a792e04802be11785e0bed013c0_400x224.jpg" alt="">
+                                </div>
+                                <div class="abbreviate">
+                                    <p> 我记得那年生日 也记得那一首歌 记得那片星空 最紧的右手 最暖的胸口 谁 记得 谁 忘了 想问为什么 我不再是你的快乐 可是为什么 却苦笑说我都懂了 自尊常常将人拖着 把爱都走曲折
+                                        假装了解是怕 真相太赤裸裸 狼狈比失去难受 我怀念的 是无话不说 我怀念的 是一起作梦 我怀念的 是争吵以后 还是想要爱你的冲动 我记得那年生日 也记得那一首歌
+                                        记得那片星空 最紧的右手 最暖的胸口 谁 忘了 我怀念的 是无言感动 我怀念的 是绝对炽热 我怀念的 是你很激动 求我原谅抱得我都痛 我记得你在背后 也记得我颤抖着
+                                        <span>
+                                            阅读全文
+                                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="options">
+                            <span>
+                                <button type="button" class="btn">
+                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                                    点赞
+                                </button>
+                            </span>
+                            <span class="view">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                674次浏览
+                            </span>
+                            <span class="comment">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                123条评论
+                            </span>
+                            <span class="star">
+                                <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                                分享
+                            </span>
+                            <span class="star">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                收藏
+                            </span>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn more dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">不感兴趣</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">举报</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="section">
+                        <div class="head">
+                            <div class="headImg">
+                                <img src="https://pic1.zhimg.com/v2-723d612640fa05e9880cec66d3a91a67_im.jpg" alt="" srcset="">
+                            </div>
+                            <div class="desc">
+                                <div>
+                                    <h4>胡明明 </h4>
+                                    <span>计算机学院，16级</span>
+                                </div>
+                                <span>7月3日 22:33</span>
+                            </div>
+                        </div>
+                        <div class="article">
+                            <a href="#">高效能的一天</a>
+                            <div class="content">
+                                <div class="cover">
+                                    <img src="https://pic1.zhimg.com/50/v2-299b6a792e04802be11785e0bed013c0_400x224.jpg" alt="">
+                                </div>
+                                <div class="abbreviate">
+                                    <p>2012年，深度学习领域取得众多突破，学者们提出了一系列全新、高精度的目标检测算法和方法，比如R-CNN, Fast-RCNN, Faster-RCNN, RetinaNet，以及既快又准的SSD和YOLO等。要使用这些基于深度学习的方法和算法（当然深度学习也是基于机器学习），需要对数学和深度学习框架有很深的理解。数百万的软件开发人员致力于整合开发...
+                                        <span>
+                                            阅读全文
+                                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="options">
+                            <span>
+                                <button type="button" class="btn">
+                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                                    点赞
+                                </button>
+                            </span>
+                            <span class="view">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                674次浏览
+                            </span>
+                            <span class="comment">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                123条评论
+                            </span>
+                            <span class="star">
+                                <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                                分享
+                            </span>
+                            <span class="star">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                收藏
+                            </span>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn more dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">不感兴趣</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">举报</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="section">
+                        <div class="head">
+                            <div class="headImg">
+                                <img src="https://pic1.zhimg.com/v2-723d612640fa05e9880cec66d3a91a67_im.jpg" alt="" srcset="">
+                            </div>
+                            <div class="desc">
+                                <div>
+                                    <h4>胡明明 </h4>
+                                    <span>计算机学院，16级</span>
+                                </div>
+                                <span>7月3日 22:33</span>
+                            </div>
+                        </div>
+                        <div class="article">
+                            <a href="#">高效能的一天</a>
+                            <div class="content">
+                                <div class="cover">
+                                    <img src="https://pic1.zhimg.com/50/v2-299b6a792e04802be11785e0bed013c0_400x224.jpg" alt="">
+                                </div>
+                                <div class="abbreviate">
+                                    <p>2012年，深度学习领域取得众多突破，学者们提出了一系列全新、高精度的目标检测算法和方法，比如R-CNN, Fast-RCNN, Faster-RCNN, RetinaNet，以及既快又准的SSD和YOLO等。要使用这些基于深度学习的方法和算法（当然深度学习也是基于机器学习），需要对数学和深度学习框架有很深的理解。数百万的软件开发人员致力于整合开发...
+                                        <span>
+                                            阅读全文
+                                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="options">
+                            <span>
+                                <button type="button" class="btn">
+                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                                    点赞
+                                </button>
+                            </span>
+                            <span class="view">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                674次浏览
+                            </span>
+                            <span class="comment">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                123条评论
+                            </span>
+                            <span class="star">
+                                <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                                分享
+                            </span>
+                            <span class="star">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                收藏
+                            </span>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn more dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">不感兴趣</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">举报</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div> -->
+        </main>
+
+
+
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/bootstrap/js/bootstrap.js"></script>
+        <script src="/static/js/auth.js"></script>
+        <script src="/static/js/approve.js"></script>
+        <script>
+            $('.menu').on('click', function (ev) {
+                let $this = $(this)
+                let id = $(this).attr('data-id')
+                $this.siblings().removeClass('active')
+                $this.addClass('active')
+                $(id).show().siblings().hide()
+            })
+            document.getElementById('auth').click()
+        </script>
+    </body>
+
+</html>
