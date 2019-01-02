@@ -42,7 +42,7 @@
         <div class="content">
           {{bb.message}}
         </div>
-        <div v-show="bb.success == 0" class="confirm" @click="()=>confirmConfession(bb.user_id, bb.to_user_id)">好, 在一起</div>
+        <div v-show="bb.sueccess === 0" class="confirm" @click="()=>confirmConfession(bb.user_id, bb.to_user_id)">好, 在一起</div>
       </li>
     </ul>
 

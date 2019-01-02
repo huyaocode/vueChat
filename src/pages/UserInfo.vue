@@ -180,7 +180,8 @@
         @click="editorInfo"
       >编辑我的信息</span>
     </div>
-    {{pick}}
+    <div class="refresh">{{pick}}</div>
+    
   </div>
 </template>
 
@@ -518,6 +519,9 @@ export default {
   }
   form {
     display: none;
+  }
+  .refresh {
+    font-size: 0;
   }
 }
 </style>

@@ -21,13 +21,7 @@
             type="text"
             class="fadeIn second"
             v-model="name"
-            placeholder="教务处账号"
-          />
-          <input
-            type="text"
-            class="fadeIn third"
-            v-model="username"
-            placeholder="昵称"
+            placeholder="用户名"
           />
           <input
             type="password"
@@ -75,7 +69,6 @@ export default {
   data () {
     return {
       name: '',
-      username: '',
       password: '',
       repeatPsw: '',
       sex: 1,

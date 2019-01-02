@@ -67,7 +67,7 @@ export default {
     this.user_id = userInfo.user_id;
     const _this = this;
     axios.get('api/v1/get_approve?user_id=' + this.user_id).then(res => {
-      _this.hasPass = res.data.data.length === 0 ? false : true
+      _this.hasPass = res.data.data[0].success
       _this.imgUrl = res.data.data[0].image
     }).catch(err => {
       console.log('err')
